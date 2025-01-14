@@ -36,12 +36,14 @@ const NavMenuItemProduct = ({ title, image, children }: NavMenuItemProps) => {
       <NavigationMenuContent>
         <div className="w-screen max-w-screen-2xl mx-auto grid gap-3 p-6 md:grid-cols-[1fr_460px] bg-white">
           <div className="grid gap-3">{children}</div>
-          <div className="flex items-center justify-center p-4">
-            <img
-              src={image}
-              alt={`${title} Collection`}
-              className="aspect-[4/3] object-cover rounded-lg w-full h-full transform scale-115"
-            />
+          <div className="flex items-center justify-center h-full">
+            <div className="relative w-full h-full">
+              <img
+                src={image}
+                alt={`${title} Collection`}
+                className="w-full h-full object-contain transform scale-125"
+              />
+            </div>
           </div>
         </div>
       </NavigationMenuContent>

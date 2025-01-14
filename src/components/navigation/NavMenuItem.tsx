@@ -56,12 +56,12 @@ const NavMenuItem = ({ title, image, children, href }: NavMenuItemProps) => {
               return child;
             })}
           </div>
-          <div className="h-full flex items-center justify-center p-2">
-            <div className="relative w-full h-full scale-115">
+          <div className="flex items-center justify-center h-full">
+            <div className="relative w-full h-full">
               <img
                 src={image}
                 alt={`${title} Collection`}
-                className="absolute inset-0 w-full h-full object-contain rounded-lg transform scale-115"
+                className="absolute inset-0 w-full h-full object-contain transform scale-125"
               />
             </div>
           </div>
