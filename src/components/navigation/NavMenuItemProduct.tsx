@@ -15,7 +15,7 @@ const NavMenuItemProduct = ({ title, image, children }: NavMenuItemProps) => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const handleClick = () => {
-    setActiveItem(title); // Set the current item as active
+    setActiveItem(title);
   };
 
   const isActive = activeItem === title;
@@ -34,13 +34,13 @@ const NavMenuItemProduct = ({ title, image, children }: NavMenuItemProps) => {
         {title}
       </NavigationMenuTrigger>
       <NavigationMenuContent>
-        <div className="w-screen max-w-screen-2xl mx-auto grid gap-3 p-6 md:grid-cols-[1fr_400px] bg-white">
+        <div className="w-screen max-w-screen-2xl mx-auto grid gap-3 p-6 md:grid-cols-[1fr_460px] bg-white">
           <div className="grid gap-3">{children}</div>
           <div className="flex items-center justify-center p-4">
             <img
               src={image}
               alt={`${title} Collection`}
-              className="aspect-[4/3] object-cover rounded-lg w-full h-full"
+              className="aspect-[4/3] object-cover rounded-lg w-full h-full transform scale-115"
             />
           </div>
         </div>
