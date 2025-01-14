@@ -1,55 +1,44 @@
-import { CheckCircle, Zap, Shield, Smartphone } from "lucide-react";
+import { Code, Palette, Zap } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const features = [
   {
-    icon: <Zap className="h-6 w-6" />,
-    title: "Lightning Fast",
-    description: "Built with performance in mind for the best user experience.",
+    title: "Fast Development",
+    description: "Quick iterations with hot reload and modern development tools.",
+    icon: <Zap className="w-10 h-10 text-blue-500" />,
   },
   {
-    icon: <Shield className="h-6 w-6" />,
-    title: "Secure by Default",
-    description: "Enterprise-grade security built into every layer.",
+    title: "Beautiful Design",
+    description: "Stunning UI components and responsive layouts out of the box.",
+    icon: <Palette className="w-10 h-10 text-purple-500" />,
   },
   {
-    icon: <Smartphone className="h-6 w-6" />,
-    title: "Responsive Design",
-    description: "Beautiful on every screen size and device.",
-  },
-  {
-    icon: <CheckCircle className="h-6 w-6" />,
-    title: "Production Ready",
-    description: "Thoroughly tested and ready for your next project.",
+    title: "Clean Code",
+    description: "Well-structured TypeScript code following best practices.",
+    icon: <Code className="w-10 h-10 text-pink-500" />,
   },
 ];
 
-export const Features = () => {
+const Features = () => {
   return (
-    <div className="py-24 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            Everything you need
-          </h2>
-          <p className="mt-4 text-lg text-gray-600">
-            All the essential features you need to build amazing applications
-          </p>
-        </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="relative p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300"
-            >
-              <div className="text-primary mb-4">{feature.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
+            <Card key={index} className="hover-card">
+              <CardHeader>
+                <div className="mb-4">{feature.icon}</div>
+                <CardTitle>{feature.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{feature.description}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
     </div>
   );
 };
+
+export default Features;
