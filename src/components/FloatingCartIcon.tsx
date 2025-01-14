@@ -31,7 +31,7 @@ const FloatingCartIcon = () => {
           <Link to="/cart">
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="bg-[#700100] p-3 rounded-full shadow-lg relative cursor-pointer"
+              className="bg-[#700100] p-4 rounded-full shadow-lg relative cursor-pointer"
             >
               <ShoppingCart className="w-6 h-6 text-white" />
               {itemCount > 0 && (
