@@ -48,6 +48,11 @@ const ProductSelectionPanel = ({
         filteredProducts = data.filter(product => {
           return categories.some(category => {
             if (category.type === 'itemgroup') {
+              // Check for additional filters if they exist
+              if (category.additionalFilter) {
+                return product.itemgroup_product === category.value && 
+                       product[category.additionalFilter.field as keyof Product] === category.additionalFilter.value;
+              }
               return product.itemgroup_product === category.value;
             }
             if (category.type === 'type') {

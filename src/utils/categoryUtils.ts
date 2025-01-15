@@ -36,7 +36,7 @@ export const getAvailableCategories = (
     const cravateCount = selectedItems.filter(item => item.itemgroup_product === 'cravates').length;
 
     if (chemiseCount === 0) {
-      return [{ label: 'Chemises', type: 'itemgroup', value: 'chemises' }];
+      return [{ label: 'Chemises Homme', type: 'itemgroup', value: 'chemises', additionalFilter: { field: 'category_product', value: 'homme' } }];
     }
     if (chemiseCount === 1 && beltCount === 0) {
       return [{ label: 'Ceintures', type: 'itemgroup', value: 'ceintures' }];
