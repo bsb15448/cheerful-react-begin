@@ -57,30 +57,49 @@ const sendOrderConfirmationEmail = async (orderData: OrderSubmission): Promise<v
   console.log('Starting email confirmation process...');
   
   try {
-    // Format the data for the email endpoint
-    const emailData = {
-      order_id: orderData.order_id,
-      customer_email: orderData.user_details.email,
-      customer_name: `${orderData.user_details.first_name} ${orderData.user_details.last_name}`,
-      order_details: {
-        items: orderData.items,
-        total: orderData.price_details.final_total,
-        shipping: orderData.price_details.shipping_cost,
+    // Format the data according to the email endpoint requirements
+    const emailPayload = {
+      user_details: {
+        email: orderData.user_details.email,
+        first_name: orderData.user_details.first_name,
+        last_name: orderData.user_details.last_name,
         address: orderData.user_details.address,
-        payment_method: orderData.payment.method
+        country: orderData.user_details.country,
+        zip_code: orderData.user_details.zip_code,
+        phone: orderData.user_details.phone
+      },
+      order_id: orderData.order_id,
+      items: orderData.items.map(item => ({
+        name: item.name,
+        size: item.size,
+        color: item.color,
+        quantity: item.quantity,
+        total_price: item.total_price.toString(),
+        personalization: item.personalization === '-' ? 'No' : item.personalization,
+        pack: item.pack === 'aucun' ? 'No' : 'Yes',
+        box: item.box === 'Sans box' ? 'No' : 'Yes'
+      })),
+      price_details: {
+        subtotal: orderData.price_details.subtotal.toString(),
+        shipping_cost: orderData.price_details.shipping_cost.toString(),
+        newsletter_discount_amount: orderData.price_details.newsletter_discount_amount.toString(),
+        final_total: orderData.price_details.final_total.toString()
+      },
+      payment: {
+        method: orderData.payment.method === 'card' ? 'Credit Card' : 'Cash',
+        status: orderData.payment.status === 'completed' ? 'Paid' : 'Pending'
       }
     };
 
-    console.log('Sending email with data:', JSON.stringify(emailData, null, 2));
+    console.log('Sending email with data:', JSON.stringify(emailPayload, null, 2));
 
-    const response = await fetch('https://fioriforyou.com/send_order_email.php', {
+    const response = await fetch('https://www.fioriforyou.com/testsmtp.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      mode: 'cors',
-      body: JSON.stringify(emailData),
+      body: JSON.stringify(emailPayload),
     });
 
     const responseText = await response.text();
