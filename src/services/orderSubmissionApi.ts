@@ -84,12 +84,13 @@ export const submitOrder = async (orderData: OrderSubmission): Promise<any> => {
   console.log('Submitting order with data:', orderData);
 
   try {
-    // Format items to ensure pack information is properly included
+    // Format items to ensure personalization is properly handled
     const formattedItems = orderData.items.map(item => ({
       ...item,
       pack: item.pack || 'aucun',
       size: item.size || '-',
-      personalization: item.personalization || '-',
+      // Only include personalization if it exists, otherwise use '-'
+      personalization: item.personalization && item.personalization !== '' ? item.personalization : '-',
       box: item.box || 'Sans box'
     }));
 

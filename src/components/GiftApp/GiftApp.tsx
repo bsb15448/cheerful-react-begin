@@ -10,7 +10,7 @@ import ConfirmationButton from "./ConfirmationButton";
 import { Product } from "@/types/product";
 import PackTypeHeader from "./components/PackTypeHeader";
 import { validatePackSelection } from "./components/PackValidation";
-import { getPackPrice } from "./components/PackPricing";
+import { getPackPrice, getPackImage } from "@/config/packPrices";
 
 export interface GiftPack {
   items: Product[];
@@ -28,7 +28,7 @@ const GiftApp = () => {
   const packType = sessionStorage.getItem('selectedPackType') || 'Pack Trio';
 
   const containerCount = React.useMemo(() => {
-    if (packType === 'Pack Chemise') return 1;
+    if (['Pack Chemise', 'Pack Ceinture', 'Pack Cravatte', 'Pack Malette'].includes(packType)) return 1;
     return ['Pack Duo', 'Pack Mini Duo'].includes(packType) ? 2 : 3;
   }, [packType]);
 
@@ -46,6 +46,7 @@ const GiftApp = () => {
 
     setIsLoading(true);
     const packPrice = getPackPrice(packType);
+    const packImage = getPackImage(packType);
     
     if (packPrice > 0) {
       addToCart({
@@ -53,7 +54,7 @@ const GiftApp = () => {
         name: `${packType} - Frais de packaging`,
         price: packPrice,
         quantity: 1,
-        image: "/Menu/Sur musure .png",
+        image: packImage,
         type_product: "Pack",
         itemgroup_product: "Pack",
         size: "-",
@@ -132,6 +133,25 @@ const GiftApp = () => {
     });
   };
 
+  const handleRemoveItem = (index: number) => {
+    setSelectedItems(prev => {
+      const newItems = [...prev];
+      newItems.splice(index, 1);
+      return newItems;
+    });
+    
+    toast({
+      title: "Article Retiré",
+      description: "L'article a été retiré de votre pack",
+      style: {
+        backgroundColor: '#700100',
+        color: 'white',
+        border: '1px solid #590000',
+      },
+    });
+    playTickSound();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b bg-[#f6f7f9] py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
@@ -151,6 +171,7 @@ const GiftApp = () => {
             <GiftBasket3D 
               items={selectedItems}
               onItemDrop={handleItemDrop}
+              onRemoveItem={handleRemoveItem}
               containerCount={containerCount}
               onContainerSelect={setSelectedContainerIndex}
             />
