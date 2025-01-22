@@ -4,6 +4,7 @@ import ProductGrid from "../components/ProductGrid";
 import AboutSection from "../components/AboutSection";
 import FAQ from "../components/FAQ";
 import ReviewSection from "../components/ReviewSection";
+import MapSection from "../components/MapSection";
 
 const Index = () => {
   const [cartCount, setCartCount] = useState(0);
@@ -25,6 +26,9 @@ const Index = () => {
 
       {/* Reviews Section */}
       <ReviewSection />
+
+      {/* Map Section */}
+      <MapSection />
 
       {/* FAQ Section */}
       <FAQ />
