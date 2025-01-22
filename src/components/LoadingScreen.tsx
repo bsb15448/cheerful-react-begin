@@ -14,14 +14,13 @@ const LoadingScreen = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="font-['Goudy_Trajan_Pro_Bold'] text-4xl font-bold text-primary"
+            className="text-6xl font-bold bg-gradient-to-r from-[#2a98cb] to-[#d175a1] bg-clip-text text-transparent"
           >
             ELLES
           </motion.h1>
-          <div className="mt-2 flex justify-center">
-            {/* CMYK-style loading bars */}
-            <div className="relative h-1 w-32">
-              {/* Cyan bar */}
+          <div className="mt-4 flex justify-center">
+            <div className="relative h-1.5 w-40">
+              {/* Blue bar */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -31,9 +30,9 @@ const LoadingScreen = () => {
                   repeatType: "reverse",
                   ease: "easeInOut",
                 }}
-                className="absolute h-full w-full origin-left bg-[#0FA0CE] opacity-80"
+                className="absolute h-full w-full origin-left bg-[#2a98cb] opacity-80"
               />
-              {/* Magenta bar */}
+              {/* Pink bar */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -44,7 +43,7 @@ const LoadingScreen = () => {
                   ease: "easeInOut",
                   delay: 0.2,
                 }}
-                className="absolute h-full w-full origin-left bg-[#D946EF] opacity-80"
+                className="absolute h-full w-full origin-left bg-[#d175a1] opacity-80"
               />
               {/* Yellow bar */}
               <motion.div
@@ -57,7 +56,7 @@ const LoadingScreen = () => {
                   ease: "easeInOut",
                   delay: 0.4,
                 }}
-                className="absolute h-full w-full origin-left bg-[#F97316] opacity-80"
+                className="absolute h-full w-full origin-left bg-[#fdeb1d] opacity-80"
               />
               {/* Black bar */}
               <motion.div
@@ -70,7 +69,7 @@ const LoadingScreen = () => {
                   ease: "easeInOut",
                   delay: 0.6,
                 }}
-                className="absolute h-full w-full origin-left bg-[#222222] opacity-80"
+                className="absolute h-full w-full origin-left bg-[#040404] opacity-80"
               />
             </div>
           </div>
