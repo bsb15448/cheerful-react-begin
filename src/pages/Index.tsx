@@ -4,12 +4,14 @@ import ProductGrid from "../components/ProductGrid";
 import AboutSection from "../components/AboutSection";
 import FAQ from "../components/FAQ";
 import ReviewSection from "../components/ReviewSection";
+import { WelcomeDialog } from "../components/WelcomeDialog";
 
 const Index = () => {
   const [cartCount, setCartCount] = useState(0);
 
   return (
     <>
+      <WelcomeDialog />
       <HeroSection />
 
       {/* Products Section */}
