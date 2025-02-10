@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from '@/components/ui/card';
@@ -82,7 +83,7 @@ interface APIUserSeasonsResponse {
 }
 
 const Clients: React.FC<ClientsProps> = ({ user }) => {
-  const itemsPerPage = 10; // Define number of items per page
+  const itemsPerPage = 10;
   const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState(true);
   const [alertMessage, setAlertMessage] = useState('');
@@ -99,7 +100,7 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [allSeasons, setAllSeasons] = useState<APISeasonResponse['saisons']>([]);
   const [userSeasons, setUserSeasons] = useState<APIUserSeasonsResponse['seasons']>([]);
-  const [showRegistrationRequests, setShowRegistrationRequests] = useState(false);
+  const [showRegistrationRequests, setShowRegistrationRequests] = useState(true); // Changed to true by default
   const [registrationRequests, setRegistrationRequests] = useState<RegistrationRequest[]>([]);
   const [loadingRequests, setLoadingRequests] = useState(false);
   const [key, setKey] = useState("38457");
@@ -111,7 +112,8 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
     Promise.all([
       fetchUsers(),
       fetchSeasons(),
-      fetchUserSeasons()
+      fetchUserSeasons(),
+      fetchRegistrationRequests() // Added to fetch requests on mount
     ]).catch(error => {
       console.error("Error fetching initial data:", error);
       setLoading(false);
