@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from '@/components/ui/card';
@@ -447,11 +448,6 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
                 <div className="flex justify-center p-4">
                   <Loader2 className="h-6 w-6 animate-spin text-[#2a98cb]" />
                 </div>
-              ) : currentRequests.length === 0 ? (
-                <div className="text-center py-8 bg-gray-50 rounded-lg">
-                  <Box className="h-12 w-12 mx-auto text-[#d175a1] mb-3" />
-                  <p className="text-gray-500 font-medium">Aucune demande en attente</p>
-                </div>
               ) : (
                 <>
                   <div className="space-y-4 mb-4">
@@ -486,59 +482,70 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
                     </div>
                   </div>
                   <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead>
-                        <tr className="bg-[#2a98cb]/5">
-                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Utilisateur (#ID)</th>
-                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Email</th>
-                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Formation</th>
-                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Date de demande</th>
-                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {currentRequests.map((request) => {
-                          const season = allSeasons.find(s => s.id_saison.toString() === request.id_saison);
-                          const userData = users.find(u => u.user.id_client === request.id_user);
-                          
-                          return (
-                            <tr key={request.id} className="border-b hover:bg-[#2a98cb]/5 transition-colors">
-                              <td className="py-4 px-4">
-                                {userData ? `${userData.user.prenom_client} ${userData.user.nom_client} (#${userData.user.id_client})` : 'Utilisateur inconnu'}
-                              </td>
-                              <td className="py-4 px-4">
-                                {userData?.user.email_client || 'Email inconnu'}
-                              </td>
-                              <td className="py-4 px-4">{season ? season.name_saison : 'Formation inconnue'}</td>
-                              <td className="py-4 px-4">
-                                {new Date(parseInt(request.created_at) * 1000).toLocaleDateString()}
-                              </td>
-                              <td className="py-4 px-4">
-                                <div className="flex gap-2">
-                                  <Button
-                                    size="sm"
-                                    onClick={() => handleAcceptRequest(request.id_user, request.id_saison, request.id)}
-                                    className="bg-[#2a98cb] hover:bg-[#2a98cb]/90 transition-colors"
-                                  >
-                                    <Check className="h-4 w-4 mr-1" />
-                                    Accepter
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    variant="destructive"
-                                    onClick={() => handleRejectRequest(request.id)}
-                                    className="bg-[#d175a1] hover:bg-[#d175a1]/90 transition-colors"
-                                  >
-                                    <Trash2 className="h-4 w-4 mr-1" />
-                                    Refuser
-                                  </Button>
-                                </div>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
+                    {filteredRequests.length === 0 ? (
+                      <div className="text-center py-8 bg-gray-50 rounded-lg">
+                        <Box className="h-12 w-12 mx-auto text-[#d175a1] mb-3" />
+                        <p className="text-gray-500 font-medium">
+                          {filterSeason !== 'all' 
+                            ? "Aucune demande pour cette formation"
+                            : "Aucune demande en attente"}
+                        </p>
+                      </div>
+                    ) : (
+                      <table className="w-full">
+                        <thead>
+                          <tr className="bg-[#2a98cb]/5">
+                            <th className="text-left py-3 px-4 font-medium text-[#040404]">Utilisateur (#ID)</th>
+                            <th className="text-left py-3 px-4 font-medium text-[#040404]">Email</th>
+                            <th className="text-left py-3 px-4 font-medium text-[#040404]">Formation</th>
+                            <th className="text-left py-3 px-4 font-medium text-[#040404]">Date de demande</th>
+                            <th className="text-left py-3 px-4 font-medium text-[#040404]">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {currentRequests.map((request) => {
+                            const season = allSeasons.find(s => s.id_saison.toString() === request.id_saison);
+                            const userData = users.find(u => u.user.id_client === request.id_user);
+                            
+                            return (
+                              <tr key={request.id} className="border-b hover:bg-[#2a98cb]/5 transition-colors">
+                                <td className="py-4 px-4">
+                                  {userData ? `${userData.user.prenom_client} ${userData.user.nom_client} (#${userData.user.id_client})` : 'Utilisateur inconnu'}
+                                </td>
+                                <td className="py-4 px-4">
+                                  {userData?.user.email_client || 'Email inconnu'}
+                                </td>
+                                <td className="py-4 px-4">{season ? season.name_saison : 'Formation inconnue'}</td>
+                                <td className="py-4 px-4">
+                                  {new Date(parseInt(request.created_at) * 1000).toLocaleDateString()}
+                                </td>
+                                <td className="py-4 px-4">
+                                  <div className="flex gap-2">
+                                    <Button
+                                      size="sm"
+                                      onClick={() => handleAcceptRequest(request.id_user, request.id_saison, request.id)}
+                                      className="bg-green-500 hover:bg-green-600 transition-colors"
+                                    >
+                                      <Check className="h-4 w-4 mr-1" />
+                                      Accepter
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="destructive"
+                                      onClick={() => handleRejectRequest(request.id)}
+                                      className="bg-red-500 hover:bg-red-600 transition-colors"
+                                    >
+                                      <Trash2 className="h-4 w-4 mr-1" />
+                                      Refuser
+                                    </Button>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    )}
                   </div>
                   
                   {totalRequestPages > 1 && (
