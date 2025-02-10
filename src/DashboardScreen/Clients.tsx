@@ -216,15 +216,17 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
 
       const userData = users.find(u => u.user.id_client === userId);
       const userName = userData ? `${userData.user.prenom_client} ${userData.user.nom_client}` : 'l\'utilisateur';
+      const userNumber = userData?.user.id_client || '';
 
       toast({
-        title: "Succès",
-        description: `Formation activée pour ${userName}`,
+        title: "Succès!",
+        description: `Formation activée pour ${userName} (Utilisateur #${userNumber})`,
         variant: "default",
-        className: "bg-green-500 text-white",
+        className: "bg-[#2a98cb] text-white font-medium border-none",
       });
       
       await logUploadEvent('Formation activée avec succès');
+      fetchRegistrationRequests();
       fetchUsers();
     } catch (error) {
       console.error('Error handling request:', error);
@@ -427,23 +429,23 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
               fetchRegistrationRequests();
             }
           }}
-          className="mb-6"
+          className="mb-6 bg-[#2a98cb] hover:bg-[#2a98cb]/90"
         >
           <BookOpen className="h-4 w-4 mr-2" />
           Demande d'inscription aux formations
         </Button>
 
         {showRegistrationRequests && (
-          <Card className="mb-8">
+          <Card className="mb-8 border-[#d175a1]/20">
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-4">Demandes d'inscription en attente</h3>
+              <h3 className="text-xl font-semibold mb-4 text-[#040404]">Demandes d'inscription en attente</h3>
               {loadingRequests ? (
                 <div className="flex justify-center p-4">
-                  <Loader2 className="h-6 w-6 animate-spin" />
+                  <Loader2 className="h-6 w-6 animate-spin text-[#2a98cb]" />
                 </div>
               ) : currentRequests.length === 0 ? (
                 <div className="text-center py-8 bg-gray-50 rounded-lg">
-                  <Box className="h-12 w-12 mx-auto text-gray-400 mb-3" />
+                  <Box className="h-12 w-12 mx-auto text-[#d175a1] mb-3" />
                   <p className="text-gray-500 font-medium">Aucune demande en attente</p>
                 </div>
               ) : (
@@ -451,12 +453,12 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
-                        <tr className="bg-gray-50">
-                          <th className="text-left py-3 px-4 font-medium text-gray-500">Utilisateur</th>
-                          <th className="text-left py-3 px-4 font-medium text-gray-500">Email</th>
-                          <th className="text-left py-3 px-4 font-medium text-gray-500">Formation</th>
-                          <th className="text-left py-3 px-4 font-medium text-gray-500">Date de demande</th>
-                          <th className="text-left py-3 px-4 font-medium text-gray-500">Actions</th>
+                        <tr className="bg-[#2a98cb]/5">
+                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Utilisateur (#ID)</th>
+                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Email</th>
+                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Formation</th>
+                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Date de demande</th>
+                          <th className="text-left py-3 px-4 font-medium text-[#040404]">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -465,9 +467,9 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
                           const userData = users.find(u => u.user.id_client === request.id_user);
                           
                           return (
-                            <tr key={request.id} className="border-b hover:bg-gray-50 transition-colors">
+                            <tr key={request.id} className="border-b hover:bg-[#2a98cb]/5 transition-colors">
                               <td className="py-4 px-4">
-                                {userData ? `${userData.user.prenom_client} ${userData.user.nom_client}` : 'Utilisateur inconnu'}
+                                {userData ? `${userData.user.prenom_client} ${userData.user.nom_client} (#${userData.user.id_client})` : 'Utilisateur inconnu'}
                               </td>
                               <td className="py-4 px-4">
                                 {userData?.user.email_client || 'Email inconnu'}
@@ -481,7 +483,7 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
                                   <Button
                                     size="sm"
                                     onClick={() => handleAcceptRequest(request.id_user, request.id_saison, request.id)}
-                                    className="bg-green-500 hover:bg-green-600"
+                                    className="bg-[#2a98cb] hover:bg-[#2a98cb]/90 transition-colors"
                                   >
                                     <Check className="h-4 w-4 mr-1" />
                                     Accepter
@@ -490,6 +492,7 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
                                     size="sm"
                                     variant="destructive"
                                     onClick={() => handleRejectRequest(request.id)}
+                                    className="bg-[#d175a1] hover:bg-[#d175a1]/90 transition-colors"
                                   >
                                     <Trash2 className="h-4 w-4 mr-1" />
                                     Refuser
