@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from '@/components/ui/card';
@@ -298,12 +297,15 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
     const userData = users.find(u => u.user.id_client === request.id_user);
     const season = allSeasons.find(s => s.id_saison.toString() === request.id_saison);
     
-    return (
+    const matchesSearch = 
       userData?.user.nom_client?.toLowerCase().includes(searchRequestTerm.toLowerCase()) ||
       userData?.user.prenom_client?.toLowerCase().includes(searchRequestTerm.toLowerCase()) ||
       userData?.user.email_client?.toLowerCase().includes(searchRequestTerm.toLowerCase()) ||
-      season?.name_saison?.toLowerCase().includes(searchRequestTerm.toLowerCase())
-    );
+      season?.name_saison?.toLowerCase().includes(searchRequestTerm.toLowerCase());
+
+    const matchesSeason = filterSeason === 'all' || request.id_saison === filterSeason;
+
+    return matchesSearch && matchesSeason;
   });
 
   const indexOfLastRequest = currentRequestPage * requestsPerPage;
