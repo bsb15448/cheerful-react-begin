@@ -452,6 +452,37 @@ const Clients: React.FC<ClientsProps> = ({ user }) => {
                 </div>
               ) : (
                 <>
+                  <div className="space-y-4 mb-4">
+                    <div className="flex gap-4">
+                      <div className="flex-1">
+                        <div className="relative">
+                          <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+                          <Input
+                            placeholder="Rechercher une demande..."
+                            value={searchRequestTerm}
+                            onChange={(e) => setSearchRequestTerm(e.target.value)}
+                            className="pl-8 text-black"
+                          />
+                        </div>
+                      </div>
+                      <Select
+                        value={filterSeason}
+                        onValueChange={setFilterSeason}
+                      >
+                        <SelectTrigger className="w-[250px] text-black">
+                          <SelectValue placeholder="Filtrer par formation" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Toutes les formations</SelectItem>
+                          {allSeasons.map((season) => (
+                            <SelectItem key={season.id_saison} value={season.id_saison.toString()}>
+                              {season.name_saison}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
