@@ -46,7 +46,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[72vh] overflow-hidden">
+    <section className="relative min-h-[57.6vh] overflow-hidden">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -63,7 +63,7 @@ export const HeroSection = () => {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-[72vh] items-center justify-center px-4">
+      <div className="relative z-10 flex min-h-[57.6vh] items-center justify-center px-4">
         <div className="text-center text-white">
           <h1 className="animate-fade-in font-sans text-5xl font-bold leading-tight md:text-7xl whitespace-pre-line">
             {slides[currentSlide].title}
