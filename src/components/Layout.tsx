@@ -35,10 +35,10 @@ const CategoryLink = ({
   const location = useLocation();
 
   return (
-    <NavigationMenuItem>
+    <NavigationMenuItem className="group">
       <NavigationMenuTrigger 
         className={cn(
-          "h-auto py-2",
+          "h-auto py-2 data-[state=open]:bg-accent",
           location.pathname === href && "border-2 border-primary rounded-md bg-transparent text-primary"
         )}
       >
@@ -52,33 +52,31 @@ const CategoryLink = ({
         </div>
       </NavigationMenuTrigger>
       {subItems && (
-        <NavigationMenuContent>
-          <div className="absolute left-0 mt-0.5 w-full bg-white shadow-lg rounded-b-lg overflow-hidden border-t">
-            <div className="container mx-auto p-6">
-              <div className="grid grid-cols-3 gap-6">
-                {subItems.map((item) => (
-                  <NavigationMenuLink
-                    key={item.path}
-                    asChild
+        <NavigationMenuContent className="absolute left-0 top-full w-full bg-white shadow-lg rounded-b-lg overflow-hidden border-t data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52">
+          <div className="container mx-auto p-6">
+            <div className="grid grid-cols-3 gap-6">
+              {subItems.map((item) => (
+                <NavigationMenuLink
+                  key={item.path}
+                  asChild
+                >
+                  <Link
+                    to={item.path}
+                    className="block p-4 space-y-2 hover:bg-gray-50 rounded-lg transition-colors"
+                    onClick={() => navigate(item.path)}
                   >
-                    <Link
-                      to={item.path}
-                      className="block p-4 space-y-2 hover:bg-gray-50 rounded-lg transition-colors"
-                      onClick={() => navigate(item.path)}
-                    >
-                      <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 mb-2">
-                        <img 
-                          src={item.image} 
-                          alt={item.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <h3 className="font-medium text-gray-900">{item.title}</h3>
-                      <p className="text-sm text-gray-500">{item.description}</p>
-                    </Link>
-                  </NavigationMenuLink>
-                ))}
-              </div>
+                    <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 mb-2">
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="font-medium text-gray-900">{item.title}</h3>
+                    <p className="text-sm text-gray-500">{item.description}</p>
+                  </Link>
+                </NavigationMenuLink>
+              ))}
             </div>
           </div>
         </NavigationMenuContent>
