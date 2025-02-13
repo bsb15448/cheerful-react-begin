@@ -15,6 +15,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { menuItems } from '../config/menuConfig';
+import { products } from '../config/products';
 
 const CategoryLink = ({ 
   href, 
