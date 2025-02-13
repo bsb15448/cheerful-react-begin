@@ -4,9 +4,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { products } from "../../config/products";
 
-const SearchBar = ({ isMobile = false }: { isMobile?: boolean }) => {
+interface SearchBarProps {
+  isMobile?: boolean;
+  showSearchResults: boolean;
+  setShowSearchResults: (show: boolean) => void;
+}
+
+const SearchBar = ({ isMobile = false, showSearchResults, setShowSearchResults }: SearchBarProps) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [showSearchResults, setShowSearchResults] = useState(false);
   const navigate = useNavigate();
 
   const filteredProducts = searchQuery.length > 0

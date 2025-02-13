@@ -14,6 +14,7 @@ import CategoryLink from './navigation/CategoryLink';
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [cartCount, setCartCount] = useState(0);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -62,12 +63,19 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               <img src="/logo.png" alt="ELLES" className="h-14" />
             </a>
 
-            <SearchBar />
+            <SearchBar 
+              showSearchResults={showSearchResults}
+              setShowSearchResults={setShowSearchResults}
+            />
             <RightActions />
           </div>
 
           {/* Mobile Search */}
-          <SearchBar isMobile />
+          <SearchBar 
+            isMobile 
+            showSearchResults={showSearchResults}
+            setShowSearchResults={setShowSearchResults}
+          />
 
           {/* Desktop Lower Navigation */}
           <div className="hidden md:block border-t">
