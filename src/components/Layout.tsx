@@ -14,13 +14,6 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { menuItems } from '../config/menuConfig';
-import { products } from '../config/products';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const CategoryLink = ({ 
   href, 
@@ -47,8 +40,7 @@ const CategoryLink = ({
         className={cn(
           "h-auto py-2",
           location.pathname === href && "border-2 border-primary rounded-md bg-transparent text-primary"
-        )} 
-        onClick={() => navigate(href)}
+        )}
       >
         <div className="flex flex-col text-left min-w-max px-3 rounded-md transition-all">
           <span className="text-sm font-medium text-gray-800 whitespace-nowrap">
@@ -60,29 +52,34 @@ const CategoryLink = ({
         </div>
       </NavigationMenuTrigger>
       {subItems && (
-        <NavigationMenuContent className="bg-white data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52">
-          <div className="grid grid-cols-3 gap-4 p-6 w-[600px] bg-white rounded-lg shadow-lg">
-            {subItems.map((item) => (
-              <NavigationMenuLink
-                key={item.path}
-                asChild
-              >
-                <Link
-                  to={item.path}
-                  className="block p-4 space-y-2 hover:bg-gray-50 rounded-lg transition-colors"
-                >
-                  <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 mb-2">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="font-medium text-gray-900">{item.title}</h3>
-                  <p className="text-sm text-gray-500">{item.description}</p>
-                </Link>
-              </NavigationMenuLink>
-            ))}
+        <NavigationMenuContent>
+          <div className="absolute left-0 mt-0.5 w-full bg-white shadow-lg rounded-b-lg overflow-hidden border-t">
+            <div className="container mx-auto p-6">
+              <div className="grid grid-cols-3 gap-6">
+                {subItems.map((item) => (
+                  <NavigationMenuLink
+                    key={item.path}
+                    asChild
+                  >
+                    <Link
+                      to={item.path}
+                      className="block p-4 space-y-2 hover:bg-gray-50 rounded-lg transition-colors"
+                      onClick={() => navigate(item.path)}
+                    >
+                      <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 mb-2">
+                        <img 
+                          src={item.image} 
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <h3 className="font-medium text-gray-900">{item.title}</h3>
+                      <p className="text-sm text-gray-500">{item.description}</p>
+                    </Link>
+                  </NavigationMenuLink>
+                ))}
+              </div>
+            </div>
           </div>
         </NavigationMenuContent>
       )}
@@ -316,8 +313,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="hidden md:block border-t">
             <div className="container mx-auto">
               <div className="flex items-center justify-between py-3">
-                <NavigationMenu>
-                  <NavigationMenuList>
+                <NavigationMenu className="relative">
+                  <NavigationMenuList className="flex gap-2">
                     {menuItems.map((item, index) => (
                       <CategoryLink 
                         key={index}
