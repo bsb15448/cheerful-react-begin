@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Heart, ClipboardList, Search, Menu, X, Percent, ChevronRight, Facebook, Instagram, Youtube, ArrowLeft } from "lucide-react";
 import Footer from "./Footer";
@@ -16,6 +15,12 @@ import {
 } from "@/components/ui/navigation-menu";
 import { menuItems } from '../config/menuConfig';
 import { products } from '../config/products';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const CategoryLink = ({ 
   href, 
@@ -55,48 +60,29 @@ const CategoryLink = ({
         </div>
       </NavigationMenuTrigger>
       {subItems && (
-        <NavigationMenuContent className="w-screen">
-          <div className="w-full bg-white border-t shadow-lg">
-            <div className="container mx-auto">
-              <div className="grid grid-cols-4 gap-6 p-6">
-                <div className="col-span-3 grid grid-cols-3 gap-6">
-                  {subItems.map((item) => (
-                    <NavigationMenuLink
-                      key={item.path}
-                      asChild
-                    >
-                      <Link
-                        to={item.path}
-                        className="block space-y-2 hover:bg-gray-50 rounded-lg transition-colors p-4"
-                      >
-                        <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 mb-2">
-                          <img 
-                            src={item.image} 
-                            alt={item.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <h3 className="font-medium text-gray-900">{item.title}</h3>
-                        <p className="text-sm text-gray-500">{item.description}</p>
-                      </Link>
-                    </NavigationMenuLink>
-                  ))}
-                </div>
-                <div className="relative rounded-lg overflow-hidden">
-                  <img 
-                    src="/lovable-uploads/f0e25fb0-eac3-41ef-85f4-134f71438f42.png"
-                    alt="Category feature"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-end p-6">
-                    <div className="text-white">
-                      <h3 className="text-xl font-bold mb-2">{topText}</h3>
-                      <p className="text-sm opacity-90">{bottomText}</p>
-                    </div>
+        <NavigationMenuContent className="bg-white data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52">
+          <div className="grid grid-cols-3 gap-4 p-6 w-[600px] bg-white rounded-lg shadow-lg">
+            {subItems.map((item) => (
+              <NavigationMenuLink
+                key={item.path}
+                asChild
+              >
+                <Link
+                  to={item.path}
+                  className="block p-4 space-y-2 hover:bg-gray-50 rounded-lg transition-colors"
+                >
+                  <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 mb-2">
+                    <img 
+                      src={item.image} 
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
-              </div>
-            </div>
+                  <h3 className="font-medium text-gray-900">{item.title}</h3>
+                  <p className="text-sm text-gray-500">{item.description}</p>
+                </Link>
+              </NavigationMenuLink>
+            ))}
           </div>
         </NavigationMenuContent>
       )}
