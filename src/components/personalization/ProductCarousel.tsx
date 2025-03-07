@@ -48,7 +48,7 @@ const ProductCarousel = ({
                 >
                   <div className="h-[300px] overflow-hidden bg-gray-50 flex items-center justify-center">
                     <img
-                      src={product.image}
+                      src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.png"}
                       alt={product.name}
                       className="w-full h-full object-contain p-4"
                     />

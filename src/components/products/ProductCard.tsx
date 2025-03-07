@@ -9,11 +9,14 @@ interface ProductCardProps {
   name: string;
   description: string;
   price: string;
-  image: string;
+  images: string[];
   isPersonalizable?: boolean;
 }
 
-const ProductCard = ({ id, name, description, price, image, isPersonalizable = true }: ProductCardProps) => {
+const ProductCard = ({ id, name, description, price, images, isPersonalizable = true }: ProductCardProps) => {
+  // Get the first image or use a placeholder
+  const displayImage = images && images.length > 0 ? images[0] : "/placeholder.png";
+  
   return (
     <div className="group relative bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
       {/* Badge */}
@@ -37,7 +40,7 @@ const ProductCard = ({ id, name, description, price, image, isPersonalizable = t
       <Link to={`/product/${id}`} className="block">
         <div className="aspect-square bg-gray-50 relative overflow-hidden">
           <img
-            src={image}
+            src={displayImage}
             alt={name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
           />

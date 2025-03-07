@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Minus, Plus, ShoppingBag, Heart, ArrowLeft, ZoomIn, ZoomOut } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -17,30 +18,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import SuggestedProducts from '@/components/products/SuggestedProducts';
 import RandomProducts from '@/components/products/RandomProducts';
 
-const getProductImages = (productId: string): string[] => {
-  const product = products.find(p => p.id === productId);
-  
-  if (!product) return ['/placeholder.png'];
-
-  const images = [];
-  
-  if (product.image) {
-    images.push(product.image);
-  } else {
-    images.push('/placeholder.png');
-  }
-  
-  if (product.presentationImage && product.presentationImage !== product.image) {
-    images.push(product.presentationImage);
-  }
-  
-  while (images.length < 3) {
-    images.push('/placeholder.png');
-  }
-  
-  return images;
-};
-
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -54,9 +31,8 @@ const ProductDetail = () => {
   const [isInWishlist, setIsInWishlist] = useState(false);
   const addToCart = useCartStore((state) => state.addItem);
 
-  const productImages = getProductImages(id || '');
   const product = products.find(p => p.id === id);
-
+  
   useEffect(() => {
     const wishlistItems = localStorage.getItem('wishlist') 
       ? JSON.parse(localStorage.getItem('wishlist') || '[]') 
@@ -74,6 +50,11 @@ const ProductDetail = () => {
   if (!product) {
     return <div>Product not found</div>;
   }
+
+  // Use product.images or fallback to placeholders
+  const productImages = product.images && product.images.length > 0 
+    ? product.images 
+    : ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"];
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -96,7 +77,7 @@ const ProductDetail = () => {
       itemgroup_product: product.name,
       product_name: product.name,
       price: parseFloat(product.startingPrice),
-      image_url: product.image,
+      image_url: productImages[0],
     });
 
     toast({

@@ -1,10 +1,10 @@
+
 export interface ProductConfig {
   id: string;
   name: string;
   description: string;
   startingPrice: string;
-  image?: string;
-  presentationImage?: string;
+  images: string[];  // Array of 4 images
   category: string;
   type: string;
   metier_type: string;
@@ -19,7 +19,12 @@ export const products: ProductConfig[] = [
     name: "Veste de Chef Premium",
     description: "Veste professionnelle pour chef, confortable et élégante",
     startingPrice: "89.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-cuisine",
     type: "vestes",
     metier_type: "Restauration",
@@ -31,7 +36,12 @@ export const products: ProductConfig[] = [
     name: "Tablier Professionnel Cuisine",
     description: "Tablier robuste pour un usage intensif en cuisine",
     startingPrice: "45.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-cuisine",
     type: "tabliers",
     metier_type: "Restauration",
@@ -43,7 +53,12 @@ export const products: ProductConfig[] = [
     name: "Pantalon de Chef Classic",
     description: "Pantalon de cuisine confortable et résistant aux taches",
     startingPrice: "59.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-cuisine",
     type: "pantalons",
     metier_type: "Restauration",
@@ -57,7 +72,12 @@ export const products: ProductConfig[] = [
     name: "Veste de Boulanger Classic",
     description: "Veste traditionnelle de boulanger en coton respirant",
     startingPrice: "75.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-boulanger",
     type: "vestes",
     metier_type: "Restauration",
@@ -69,7 +89,12 @@ export const products: ProductConfig[] = [
     name: "Tablier de Boulanger Pro",
     description: "Tablier professionnel résistant à la farine",
     startingPrice: "49.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-boulanger",
     type: "tabliers",
     metier_type: "Restauration",
@@ -83,7 +108,12 @@ export const products: ProductConfig[] = [
     name: "Veste de Boucher Classic",
     description: "Veste traditionnelle de boucher, qualité supérieure",
     startingPrice: "79.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-boucher",
     type: "vestes",
     metier_type: "Industrie",
@@ -95,7 +125,12 @@ export const products: ProductConfig[] = [
     name: "Tablier de Boucher Pro",
     description: "Tablier résistant aux taches et coupures",
     startingPrice: "55.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-boucher",
     type: "tabliers",
     metier_type: "Industrie",
@@ -107,7 +142,12 @@ export const products: ProductConfig[] = [
     name: "Manchette de Protection",
     description: "Accessoire de protection pour bouchers professionnels",
     startingPrice: "29.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-boucher",
     type: "accessoires",
     metier_type: "Industrie",
@@ -121,7 +161,12 @@ export const products: ProductConfig[] = [
     name: "Blouse Esthétique Élégante",
     description: "Blouse professionnelle pour esthéticiennes",
     startingPrice: "65.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-esthetique",
     type: "blouses",
     metier_type: "Beauté",
@@ -133,7 +178,12 @@ export const products: ProductConfig[] = [
     name: "Tunique Esthétique Moderne",
     description: "Tunique confortable pour les professionnels de la beauté",
     startingPrice: "59.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-esthetique",
     type: "tuniques",
     metier_type: "Beauté",
@@ -145,7 +195,12 @@ export const products: ProductConfig[] = [
     name: "Bandeau Spa Pro",
     description: "Bandeau ajustable pour professionnels de l'esthétique",
     startingPrice: "19.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-esthetique",
     type: "accessoires",
     metier_type: "Beauté",
@@ -159,7 +214,12 @@ export const products: ProductConfig[] = [
     name: "Blouse Médicale Premium",
     description: "Blouse médicale confortable et professionnelle",
     startingPrice: "69.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-medicaux",
     type: "blouses",
     metier_type: "Médical",
@@ -171,7 +231,12 @@ export const products: ProductConfig[] = [
     name: "Tunique Médicale Confort",
     description: "Tunique médicale ergonomique et respirante",
     startingPrice: "59.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-medicaux",
     type: "tuniques",
     metier_type: "Médical",
@@ -183,7 +248,12 @@ export const products: ProductConfig[] = [
     name: "Pantalon Médical Stretch",
     description: "Pantalon médical confortable avec taille élastique",
     startingPrice: "49.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-medicaux",
     type: "pantalons",
     metier_type: "Médical",
@@ -197,7 +267,12 @@ export const products: ProductConfig[] = [
     name: "Veste Service Hôtelier",
     description: "Veste élégante pour le service hôtelier",
     startingPrice: "89.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-hotellerie",
     type: "service",
     metier_type: "Transport",
@@ -209,7 +284,12 @@ export const products: ProductConfig[] = [
     name: "Tablier Service Restaurant",
     description: "Tablier élégant pour le service en restaurant",
     startingPrice: "39.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-hotellerie",
     type: "service",
     metier_type: "Transport",
@@ -221,7 +301,12 @@ export const products: ProductConfig[] = [
     name: "Tenue d'Accueil Premium",
     description: "Ensemble professionnel pour personnel d'accueil",
     startingPrice: "119.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-hotellerie",
     type: "accueil",
     metier_type: "Transport",
@@ -235,7 +320,12 @@ export const products: ProductConfig[] = [
     name: "Combinaison de Travail Pro",
     description: "Combinaison résistante pour tous types de travaux",
     startingPrice: "99.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-travail",
     type: "combinaisons",
     metier_type: "Bâtiment",
@@ -247,7 +337,12 @@ export const products: ProductConfig[] = [
     name: "Veste de Travail Multipoches",
     description: "Veste pratique avec nombreux rangements",
     startingPrice: "79.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-travail",
     type: "vestes",
     metier_type: "Bâtiment",
@@ -259,7 +354,12 @@ export const products: ProductConfig[] = [
     name: "Blouse de Laboratoire Premium",
     description: "Blouse professionnelle pour laboratoires et industries",
     startingPrice: "65.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-travail",
     type: "blouses",
     metier_type: "Industrie",
@@ -271,7 +371,12 @@ export const products: ProductConfig[] = [
     name: "Tunique Professionnelle",
     description: "Tunique confortable pour environnement de travail",
     startingPrice: "59.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "vetements-travail",
     type: "tuniques",
     metier_type: "Industrie",
@@ -285,7 +390,12 @@ export const products: ProductConfig[] = [
     name: "Chaussures Antidérapantes Cuisine",
     description: "Chaussures professionnelles pour cuisine, confortables et sécurisées",
     startingPrice: "79.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "chaussures",
     type: "cuisine",
     metier_type: "Restauration",
@@ -297,7 +407,12 @@ export const products: ProductConfig[] = [
     name: "Chaussures de Sécurité S3",
     description: "Chaussures de sécurité confortables avec embout acier",
     startingPrice: "89.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "chaussures",
     type: "industrie",
     metier_type: "Sécurité",
@@ -309,7 +424,12 @@ export const products: ProductConfig[] = [
     name: "Bottes de Sécurité Pro",
     description: "Bottes de sécurité étanches et résistantes",
     startingPrice: "99.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "chaussures",
     type: "industrie",
     metier_type: "Sécurité",
@@ -323,7 +443,12 @@ export const products: ProductConfig[] = [
     name: "Drapeau Publicitaire",
     description: "Drapeau personnalisable pour votre communication",
     startingPrice: "49.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png",
+      "/CommingSoon.png"
+    ],
     category: "produits-marketing",
     type: "drapeaux",
     metier_type: "Marketing",
@@ -335,7 +460,12 @@ export const products: ProductConfig[] = [
     name: "Mug Personnalisable",
     description: "Mug de qualité pour votre communication",
     startingPrice: "12.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/ProductImages/BlackMug.png",
+      "/ProductImages/BlackMug.png",
+      "/ProductImages/BlackMug.png",
+      "/ProductImages/BlackMug.png"
+    ],
     category: "produits-marketing",
     type: "mugs",
     metier_type: "Marketing",
@@ -347,7 +477,12 @@ export const products: ProductConfig[] = [
     name: "Carnet Personnalisable",
     description: "Carnet professionnel avec votre logo",
     startingPrice: "9.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/ProductImages/WhiteNotebook.png",
+      "/ProductImages/WhiteNotebook.png",
+      "/ProductImages/WhiteNotebook.png",
+      "/ProductImages/WhiteNotebook.png"
+    ],
     category: "produits-marketing",
     type: "carnets",
     metier_type: "Marketing",
@@ -359,7 +494,12 @@ export const products: ProductConfig[] = [
     name: "Sac Personnalisable",
     description: "Sac en tissu avec votre design",
     startingPrice: "7.99",
-    image: "/CommingSoon.png",
+    images: [
+      "/ProductImages/YellowSac.png",
+      "/ProductImages/YellowSac.png",
+      "/ProductImages/YellowSac.png",
+      "/ProductImages/YellowSac.png"
+    ],
     category: "produits-marketing",
     type: "sacs",
     metier_type: "Marketing",
@@ -373,7 +513,12 @@ export const products: ProductConfig[] = [
     name: "Cartes de Visite Personnalisées",
     description: "Cartes de visite professionnelles sur mesure",
     startingPrice: "29.99",
-    image: "/SubItems/CarteVisites.png",
+    images: [
+      "/SubItems/CarteVisites.png",
+      "/SubItems/CarteVisites.png",
+      "/SubItems/CarteVisites.png",
+      "/SubItems/CarteVisites.png"
+    ],
     category: "produits-marketing",
     type: "cartes-visite",
     metier_type: "Marketing",
@@ -387,7 +532,12 @@ export const products: ProductConfig[] = [
     name: "Carnet Personnalisable Premium",
     description: "Carnet haut de gamme personnalisable pour entreprises",
     startingPrice: "14.99",
-    image: "/SubItems/NotebookPersonalisable.png",
+    images: [
+      "/SubItems/NotebookPersonalisable.png",
+      "/SubItems/NotebookPersonalisable.png",
+      "/SubItems/NotebookPersonalisable.png",
+      "/SubItems/NotebookPersonalisable.png"
+    ],
     category: "produits-marketing",
     type: "carnets",
     metier_type: "Marketing",
@@ -401,7 +551,12 @@ export const products: ProductConfig[] = [
     name: "Carnet Restaurant Thématique",
     description: "Carnets personnalisés adaptés au secteur de la restauration",
     startingPrice: "19.99",
-    image: "/SubItems/NotebookRestaurent.png",
+    images: [
+      "/SubItems/NotebookRestaurent.png",
+      "/SubItems/NotebookRestaurent.png",
+      "/SubItems/NotebookRestaurent.png",
+      "/SubItems/NotebookRestaurent.png"
+    ],
     category: "produits-marketing",
     type: "carnets-restaurant",
     metier_type: "Marketing",
@@ -415,7 +570,12 @@ export const products: ProductConfig[] = [
     name: "Cartes de Visite Premium",
     description: "Cartes de visite premium avec finition de luxe",
     startingPrice: "39.99",
-    image: "/SubItems/CarteVisites.png",
+    images: [
+      "/SubItems/CarteVisites.png",
+      "/SubItems/CarteVisites.png",
+      "/SubItems/CarteVisites.png",
+      "/SubItems/CarteVisites.png"
+    ],
     category: "produits-marketing",
     type: "cartes-visite",
     metier_type: "Marketing",
@@ -428,7 +588,12 @@ export const products: ProductConfig[] = [
     name: "Carnet Menu Élégant",
     description: "Carnet menu avec finition élégante pour restaurants haut de gamme",
     startingPrice: "24.99",
-    image: "/SubItems/NotebookRestaurent.png",
+    images: [
+      "/SubItems/NotebookRestaurent.png",
+      "/SubItems/NotebookRestaurent.png",
+      "/SubItems/NotebookRestaurent.png",
+      "/SubItems/NotebookRestaurent.png"
+    ],
     category: "produits-marketing",
     type: "carnets-restaurant",
     metier_type: "Marketing",
@@ -441,8 +606,12 @@ export const products: ProductConfig[] = [
     name: "Veste de Travail Multipoches",
     description: "Veste professionnelle avec multiples poches et renforts aux coudes",
     startingPrice: "79.99",
-    image: "/VetementDeTravail/veste-travail-multipoches.png",
-    presentationImage: "/VetementDeTravail/veste-travail-multipoches-worn.png",
+    images: [
+      "/VetementDeTravail/veste-travail-multipoches.png",
+      "/VetementDeTravail/veste-travail-multipoches-worn.png",
+      "/VetementDeTravail/veste-travail-multipoches.png",
+      "/VetementDeTravail/veste-travail-multipoches-worn.png"
+    ],
     category: "vetements-travail",
     type: "vestes",
     metier_type: "Bâtiment",
@@ -454,8 +623,12 @@ export const products: ProductConfig[] = [
     name: "Veste de Travail Haute Visibilité",
     description: "Veste de sécurité haute visibilité avec bandes réfléchissantes",
     startingPrice: "89.99",
-    image: "/VetementDeTravail/veste-travail-visibilite.png",
-    presentationImage: "/VetementDeTravail/veste-travail-visibilite-worn.png",
+    images: [
+      "/VetementDeTravail/veste-travail-visibilite.png",
+      "/VetementDeTravail/veste-travail-visibilite-worn.png",
+      "/VetementDeTravail/veste-travail-visibilite.png",
+      "/VetementDeTravail/veste-travail-visibilite-worn.png"
+    ],
     category: "vetements-travail",
     type: "vestes",
     metier_type: "Bâtiment",
@@ -467,8 +640,12 @@ export const products: ProductConfig[] = [
     name: "Veste de Travail Softshell",
     description: "Veste softshell imperméable et coupe-vent pour un confort optimal",
     startingPrice: "84.99",
-    image: "/VetementDeTravail/veste-travail-softshell.png",
-    presentationImage: "/VetementDeTravail/veste-travail-softshell-worn.png",
+    images: [
+      "/VetementDeTravail/veste-travail-softshell.png",
+      "/VetementDeTravail/veste-travail-softshell-worn.png",
+      "/VetementDeTravail/veste-travail-softshell.png",
+      "/VetementDeTravail/veste-travail-softshell-worn.png"
+    ],
     category: "vetements-travail",
     type: "vestes",
     metier_type: "Bâtiment",
@@ -480,8 +657,12 @@ export const products: ProductConfig[] = [
     name: "Veste de Travail Légère",
     description: "Veste professionnelle légère idéale pour la mi-saison",
     startingPrice: "69.99",
-    image: "/VetementDeTravail/veste-travail-legere.png",
-    presentationImage: "/VetementDeTravail/veste-travail-legere-worn.png",
+    images: [
+      "/VetementDeTravail/veste-travail-legere.png",
+      "/VetementDeTravail/veste-travail-legere-worn.png",
+      "/VetementDeTravail/veste-travail-legere.png",
+      "/VetementDeTravail/veste-travail-legere-worn.png"
+    ],
     category: "vetements-travail",
     type: "vestes",
     metier_type: "Bâtiment",
@@ -494,8 +675,12 @@ export const products: ProductConfig[] = [
     name: "Gilet de Travail Multipoches",
     description: "Gilet professionnel avec multiples poches et renforts, parfait pour une liberté de mouvement optimale",
     startingPrice: "64.99",
-    image: "/VetementDeTravail/gilet-travail-multipoches.png",
-    presentationImage: "/VetementDeTravail/gilet-travail-multipoches-worn.png",
+    images: [
+      "/VetementDeTravail/gilet-travail-multipoches.png",
+      "/VetementDeTravail/gilet-travail-multipoches-worn.png",
+      "/VetementDeTravail/gilet-travail-multipoches.png",
+      "/VetementDeTravail/gilet-travail-multipoches-worn.png"
+    ],
     category: "vetements-travail",
     type: "gilets",
     metier_type: "Bâtiment",
@@ -507,8 +692,12 @@ export const products: ProductConfig[] = [
     name: "Gilet de Travail Haute Visibilité",
     description: "Gilet de sécurité haute visibilité avec bandes réfléchissantes pour une protection maximale",
     startingPrice: "69.99",
-    image: "/VetementDeTravail/gilet-travail-visibilite.png",
-    presentationImage: "/VetementDeTravail/gilet-travail-visibilite-worn.png",
+    images: [
+      "/VetementDeTravail/gilet-travail-visibilite.png",
+      "/VetementDeTravail/gilet-travail-visibilite-worn.png",
+      "/VetementDeTravail/gilet-travail-visibilite.png",
+      "/VetementDeTravail/gilet-travail-visibilite-worn.png"
+    ],
     category: "vetements-travail",
     type: "gilets",
     metier_type: "Bâtiment",
@@ -522,8 +711,12 @@ export const products: ProductConfig[] = [
     name: "Sac Personnalisable Standard",
     description: "Sac en tissu robuste avec personnalisation de haute qualité pour votre marque",
     startingPrice: "8.99",
-    image: "/ProductImages/YellowSac.png",
-    presentationImage: "/ProductImages/YellowSac-showcase.png",
+    images: [
+      "/ProductImages/YellowSac.png",
+      "/ProductImages/YellowSac-showcase.png",
+      "/ProductImages/YellowSac.png",
+      "/ProductImages/YellowSac-showcase.png"
+    ],
     category: "produits-marketing",
     type: "sacs",
     metier_type: "Marketing",
@@ -535,8 +728,12 @@ export const products: ProductConfig[] = [
     name: "Sac Personnalisable Premium",
     description: "Sac de haute qualité avec finition luxueuse et grande surface d'impression pour votre marque",
     startingPrice: "12.99",
-    image: "/ProductImages/BlackSac.png",
-    presentationImage: "/ProductImages/BlackSac-showcase.png",
+    images: [
+      "/ProductImages/BlackSac.png",
+      "/ProductImages/BlackSac-showcase.png",
+      "/ProductImages/BlackSac.png",
+      "/ProductImages/BlackSac-showcase.png"
+    ],
     category: "produits-marketing",
     type: "sacs",
     metier_type: "Marketing",
@@ -548,8 +745,12 @@ export const products: ProductConfig[] = [
     name: "Sac Personnalisable Écologique",
     description: "Sac éco-responsable en matériaux recyclés avec personnalisation de votre logo",
     startingPrice: "9.99",
-    image: "/ProductImages/WhiteSac.png",
-    presentationImage: "/ProductImages/WhiteSac-showcase.png",
+    images: [
+      "/ProductImages/WhiteSac.png",
+      "/ProductImages/WhiteSac-showcase.png",
+      "/ProductImages/WhiteSac.png",
+      "/ProductImages/WhiteSac-showcase.png"
+    ],
     category: "produits-marketing",
     type: "sacs",
     metier_type: "Marketing",

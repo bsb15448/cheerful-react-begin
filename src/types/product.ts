@@ -4,8 +4,7 @@ export interface Product {
   name: string;
   description: string;
   startingPrice: string;
-  image?: string;
-  presentationImage?: string;
+  images: string[];  // Array of 4 images
   category: string;
   type: string;
   metier_type: string;

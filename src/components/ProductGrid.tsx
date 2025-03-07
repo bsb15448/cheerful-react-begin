@@ -76,19 +76,10 @@ const ProductGrid = ({ onAddToCart, limit, hideCategories = false }: ProductGrid
                     <div className="aspect-square overflow-hidden bg-gray-50 flex items-center justify-center">
                       <div className="relative w-full h-full">
                         <img
-                          src={product.image || "https://placehold.co/800x800"}
+                          src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.png"}
                           alt={product.name}
-                          className={`w-full h-full object-contain p-4 transition-opacity duration-300 ${
-                            product.presentationImage ? 'group-hover:opacity-0' : ''
-                          }`}
+                          className="w-full h-full object-contain p-4 transition-opacity duration-300 group-hover:opacity-100"
                         />
-                        {product.presentationImage && (
-                          <img
-                            src={product.presentationImage}
-                            alt={`${product.name} presentation`}
-                            className="absolute inset-0 w-full h-full object-contain p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          />
-                        )}
                       </div>
                     </div>
                     <div className="p-4 space-y-2">
