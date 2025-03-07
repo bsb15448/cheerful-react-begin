@@ -12,7 +12,6 @@ import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
 const Index = () => {
-  const [cartCount, setCartCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

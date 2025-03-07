@@ -58,10 +58,10 @@ export const HeroSection = () => {
             <img
               src={slide.image}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-contain md:object-cover"
+              className="w-full h-full object-cover"
               style={{ 
                 transform: `translateY(${scrollY * 0.2}px)`,
-                maxHeight: '100%'
+                objectPosition: 'center'
               }}
             />
           </div>
