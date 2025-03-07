@@ -125,7 +125,7 @@ const Cart = () => {
       ...item,
       name: product?.name || item.itemgroup_product,
       price: product?.startingPrice ? parseFloat(product.startingPrice) : 49.99,
-      image: product?.image || "/placeholder.svg"
+      image: product?.images && product.images.length > 0 ? product.images[0] : "/placeholder.svg"
     };
   });
 

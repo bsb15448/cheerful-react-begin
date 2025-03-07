@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Heart, ShoppingBag, Trash2 } from 'lucide-react';
@@ -119,7 +118,7 @@ const Wishlist = () => {
                 name={product.name}
                 description={product.description}
                 price={product.startingPrice}
-                images={product.images || ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"]}
+                images={product.images || ["/placeholder.png"]}
                 isPersonalizable={product.isPersonalizable}
               />
               <button
