@@ -31,11 +31,11 @@ const ProduitsMarketing = () => {
       }
     ],
     products: marketingProducts.map(product => ({
-      id: product.id,  // product.id is already a string from the products config
+      id: product.id,
       name: product.name,
       description: product.description,
       price: parseFloat(product.startingPrice),
-      image: product.image || '/placeholder.png'
+      images: product.images || ['/placeholder.png']
     }))
   };
 

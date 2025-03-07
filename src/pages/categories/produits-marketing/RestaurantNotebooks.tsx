@@ -33,7 +33,7 @@ const RestaurantNotebooks = () => {
       name: product.name,
       description: product.description,
       price: parseFloat(product.startingPrice),
-      image: product.image || '/placeholder.png'
+      images: product.images || ['/placeholder.png']
     }))
   };
 

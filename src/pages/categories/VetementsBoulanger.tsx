@@ -83,7 +83,7 @@ const VetementsBoulanger = () => {
                   name={product.name}
                   description={product.description}
                   price={product.startingPrice}
-                  image={product.image || '/placeholder.png'}
+                  images={product.images || ['/placeholder.png']}
                 />
               ))}
             </div>

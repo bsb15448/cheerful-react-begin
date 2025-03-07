@@ -119,8 +119,8 @@ const Cart = () => {
     setCurrentStep(1);
   };
 
-  const cartItemsWithDetails = items.map(item => {
-    const product = products.find(p => p.id === item.product_id.toString());
+  const cartItemsWithDetails = cartItems.map(item => {
+    const product = products.find(p => p.id === item.itemgroup_product);
     return {
       ...item,
       name: product?.name || item.itemgroup_product,

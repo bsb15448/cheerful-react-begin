@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Filter } from "lucide-react";
@@ -87,7 +86,7 @@ const VetementsMedicaux = () => {
                   name={product.name}
                   description={product.description}
                   price={product.startingPrice}
-                  image={product.image || '/placeholder.png'}
+                  images={product.images || ['/placeholder.png']}
                 />
               ))}
             </div>
