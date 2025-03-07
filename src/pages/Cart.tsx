@@ -119,7 +119,7 @@ const Cart = () => {
     setCurrentStep(1);
   };
 
-  const cartItemsWithDetails = cartItems.map(item => {
+  const cartItemsWithDetails = items.map(item => {
     const product = products.find(p => p.id === item.itemgroup_product);
     return {
       ...item,
@@ -467,7 +467,6 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 animate-fade-in">
-      {/* Payment Success Modal */}
       <Dialog open={showSuccessModal} onOpenChange={handleSuccessClose}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>

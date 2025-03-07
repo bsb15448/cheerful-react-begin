@@ -2,6 +2,7 @@
 import React from 'react';
 import { products } from '@/config/products';
 import CategoryTemplate from '@/components/categories/CategoryTemplate';
+import { mapCategoryDataForTemplate } from '@/utils/categoryTemplateMapper';
 
 const VetementsBoucher = () => {
   const boucherProducts = products.filter(
@@ -35,9 +36,12 @@ const VetementsBoucher = () => {
     }))
   };
 
+  // Use the mapper to convert data format for CategoryTemplate
+  const templateData = mapCategoryDataForTemplate(categoryData);
+
   return (
     <CategoryTemplate 
-      data={categoryData}
+      data={templateData}
       parentPath="/metiers"
       parentName="métiers"
     />
