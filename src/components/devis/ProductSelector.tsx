@@ -22,18 +22,18 @@ const ProductSelector = ({ value, onChange }: ProductSelectorProps) => {
 
   useEffect(() => {
     // This would be replaced with an actual API call in a real app
-    // For now, we'll use a mock list of products
+    // For now, we'll use a mock list of products with the required images property
     const mockProducts: Product[] = [
-      { id: "1", name: "T-shirt personnalisé", description: "T-shirt coton bio", startingPrice: "10€", category: "vêtements", type: "t-shirt", metier_type: "general" },
-      { id: "2", name: "Polo brodé", description: "Polo haut de gamme", startingPrice: "15€", category: "vêtements", type: "polo", metier_type: "general" },
-      { id: "3", name: "Veste chef cuisine", description: "Veste professionnelle", startingPrice: "30€", category: "vêtements", type: "veste", metier_type: "cuisine" },
-      { id: "4", name: "Tablier barista", description: "Tablier café premium", startingPrice: "25€", category: "vêtements", type: "tablier", metier_type: "café" },
-      { id: "5", name: "Blouse médicale", description: "Blouse professionnelle", startingPrice: "40€", category: "vêtements", type: "blouse", metier_type: "médical" },
-      { id: "6", name: "Mug personnalisé", description: "Mug céramique", startingPrice: "8€", category: "produits-marketing", type: "mug", metier_type: "général" },
-      { id: "7", name: "Cartes de visite", description: "Cartes premium", startingPrice: "50€/100pcs", category: "produits-marketing", type: "cartes", metier_type: "général" },
-      { id: "8", name: "Cahier restaurant", description: "Cahier personnalisé", startingPrice: "12€", category: "produits-marketing", type: "cahier", metier_type: "restaurant" },
-      { id: "9", name: "Drapeau publicitaire", description: "Drapeau extérieur", startingPrice: "60€", category: "produits-marketing", type: "drapeau", metier_type: "général" },
-      { id: "10", name: "Sac promotionnel", description: "Sac réutilisable", startingPrice: "5€", category: "produits-marketing", type: "sac", metier_type: "général" },
+      { id: "1", name: "T-shirt personnalisé", description: "T-shirt coton bio", startingPrice: "10€", category: "vêtements", type: "t-shirt", metier_type: "general", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "2", name: "Polo brodé", description: "Polo haut de gamme", startingPrice: "15€", category: "vêtements", type: "polo", metier_type: "general", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "3", name: "Veste chef cuisine", description: "Veste professionnelle", startingPrice: "30€", category: "vêtements", type: "veste", metier_type: "cuisine", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "4", name: "Tablier barista", description: "Tablier café premium", startingPrice: "25€", category: "vêtements", type: "tablier", metier_type: "café", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "5", name: "Blouse médicale", description: "Blouse professionnelle", startingPrice: "40€", category: "vêtements", type: "blouse", metier_type: "médical", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "6", name: "Mug personnalisé", description: "Mug céramique", startingPrice: "8€", category: "produits-marketing", type: "mug", metier_type: "général", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "7", name: "Cartes de visite", description: "Cartes premium", startingPrice: "50€/100pcs", category: "produits-marketing", type: "cartes", metier_type: "général", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "8", name: "Cahier restaurant", description: "Cahier personnalisé", startingPrice: "12€", category: "produits-marketing", type: "cahier", metier_type: "restaurant", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "9", name: "Drapeau publicitaire", description: "Drapeau extérieur", startingPrice: "60€", category: "produits-marketing", type: "drapeau", metier_type: "général", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
+      { id: "10", name: "Sac promotionnel", description: "Sac réutilisable", startingPrice: "5€", category: "produits-marketing", type: "sac", metier_type: "général", images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"] },
     ];
 
     // Create pack products from the packConfigurations
@@ -44,7 +44,8 @@ const ProductSelector = ({ value, onChange }: ProductSelectorProps) => {
       startingPrice: pack.totalPrice,
       category: "packs",
       type: "pack",
-      metier_type: pack.id
+      metier_type: pack.id,
+      images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"]
     }));
 
     setProducts(mockProducts);

@@ -44,7 +44,7 @@ const MinimizedProductCarousel = ({
                 >
                   <div className="h-[120px] w-full flex items-center justify-center p-2">
                     <img
-                      src={product.image || "https://placehold.co/800x800"}
+                      src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.png"}
                       alt={product.name}
                       className="max-h-full max-w-full h-auto w-auto object-contain"
                     />

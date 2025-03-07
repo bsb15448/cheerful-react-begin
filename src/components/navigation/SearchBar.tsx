@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Search } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
@@ -52,7 +53,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ mobile = false }) => {
                 >
                   <div className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0">
                     <img
-                      src={product.image || '/placeholder.png'}
+                      src={product.images && product.images.length > 0 ? product.images[0] : '/placeholder.png'}
                       alt={product.name}
                       className="w-full h-full object-cover"
                     />
