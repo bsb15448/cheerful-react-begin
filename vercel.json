@@ -1,8 +1,10 @@
 
 {
   "rewrites": [
-    { "source": "/admin", "destination": "/admin/index.html" },
-    { "source": "/admin/(.*)", "destination": "/admin/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "redirects": [
+    { "source": "/admin", "destination": "https://vilartback.vercel.app/", "permanent": false },
+    { "source": "/admin/(.*)", "destination": "https://vilartback.vercel.app/$1", "permanent": false }
   ]
 }
