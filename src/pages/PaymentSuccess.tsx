@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Download, Check, ArrowLeft } from 'lucide-react';
 import { generateOrderPDF } from '../lib/pdfGenerator';
@@ -20,6 +20,7 @@ interface ReservationData {
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [reservation, setReservation] = useState<ReservationData | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
