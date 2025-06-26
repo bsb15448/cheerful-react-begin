@@ -2,6 +2,63 @@
 <?php
 require_once 'config.php';
 
+// Function to save order to fallback text file
+function saveToFallbackFile($orderData, $isSuccess = true, $errorMessage = '') {
+    $fallbackFile = 'fallbackorders.txt';
+    
+    $timestamp = date('Y-m-d H:i:s');
+    $status = $isSuccess ? 'SUCCESS' : 'FAILED';
+    
+    $logEntry = "\n=== ORDER LOG ===\n";
+    $logEntry .= "Timestamp: {$timestamp}\n";
+    $logEntry .= "Status: {$status}\n";
+    
+    if (!$isSuccess && $errorMessage) {
+        $logEntry .= "Error: {$errorMessage}\n";
+    }
+    
+    $logEntry .= "Customer Data:\n";
+    if (isset($orderData['customer'])) {
+        $customer = $orderData['customer'];
+        $logEntry .= "  - Name: {$customer['prenom']} {$customer['nom']}\n";
+        $logEntry .= "  - Email: {$customer['email']}\n";
+        $logEntry .= "  - Phone: {$customer['telephone']}\n";
+        $logEntry .= "  - Address: {$customer['adresse']}, {$customer['ville']}, {$customer['code_postal']}, {$customer['pays']}\n";
+    }
+    
+    $logEntry .= "Order Data:\n";
+    if (isset($orderData['order'])) {
+        $order = $orderData['order'];
+        $logEntry .= "  - Total: {$order['total_order']} TND\n";
+        $logEntry .= "  - Payment Method: " . ($order['payment_method'] ?? 'N/A') . "\n";
+        $logEntry .= "  - Status: " . ($order['status'] ?? 'pending') . "\n";
+        
+        if (isset($order['items']) && is_array($order['items'])) {
+            $logEntry .= "  - Items:\n";
+            foreach ($order['items'] as $item) {
+                $logEntry .= "    * {$item['nom_product']} - Qty: {$item['quantity']} - Price: {$item['price']} TND\n";
+                if (isset($item['size'])) $logEntry .= "      Size: {$item['size']}\n";
+                if (isset($item['color'])) $logEntry .= "      Color: {$item['color']}\n";
+            }
+        }
+        
+        if (isset($order['delivery_address'])) {
+            $delivery = $order['delivery_address'];
+            $logEntry .= "  - Delivery Address: {$delivery['adresse']}, {$delivery['ville']}, {$delivery['code_postal']}, {$delivery['pays']}\n";
+        }
+        
+        if (isset($order['notes'])) {
+            $logEntry .= "  - Notes: {$order['notes']}\n";
+        }
+    }
+    
+    $logEntry .= "Raw JSON: " . json_encode($orderData, JSON_PRETTY_PRINT) . "\n";
+    $logEntry .= "===================\n\n";
+    
+    // Append to file (create if doesn't exist)
+    file_put_contents($fallbackFile, $logEntry, FILE_APPEND | LOCK_EX);
+}
+
 try {
     $database = new Database();
     $db = $database->getConnection();
@@ -9,7 +66,45 @@ try {
     // Get JSON input
     $input = json_decode(file_get_contents('php://input'), true);
     
-    // Validate required fields
+    // Handle payment success callback from Konnect
+    if (isset($input['payment_ref']) && isset($input['order_id'])) {
+        try {
+            // Update payment status for successful payment
+            $updatePaymentQuery = "
+                UPDATE orders 
+                SET payment_status = 'paid',
+                    payment_link_konnekt = :payment_ref,
+                    status_order = 'confirmed',
+                    date_confirmation_order = CURRENT_TIMESTAMP
+                WHERE numero_commande = :order_id
+            ";
+            
+            $updateStmt = $db->prepare($updatePaymentQuery);
+            $updateStmt->bindParam(':payment_ref', $input['payment_ref']);
+            $updateStmt->bindParam(':order_id', $input['order_id']);
+            $updateStmt->execute();
+            
+            // Log payment success to fallback file
+            $paymentData = [
+                'payment_ref' => $input['payment_ref'],
+                'order_id' => $input['order_id'],
+                'action' => 'payment_success_update'
+            ];
+            saveToFallbackFile($paymentData, true);
+            
+            echo json_encode([
+                'success' => true,
+                'message' => 'Payment status updated successfully'
+            ]);
+            exit;
+            
+        } catch (Exception $e) {
+            saveToFallbackFile($input, false, "Payment update failed: " . $e->getMessage());
+            throw $e;
+        }
+    }
+    
+    // Validate required fields for new order
     $requiredFields = [
         'customer' => ['nom', 'prenom', 'email', 'telephone', 'adresse', 'ville', 'code_postal', 'pays'],
         'order' => ['items', 'total_order'],
@@ -278,6 +373,13 @@ try {
         
         $db->commit();
         
+        // Save successful order to fallback file
+        $successData = $input;
+        $successData['generated_order_id'] = $orderId;
+        $successData['generated_order_number'] = $orderNumber;
+        $successData['generated_customer_id'] = $customerId;
+        saveToFallbackFile($successData, true);
+        
         echo json_encode([
             'success' => true,
             'message' => 'Order created successfully',
@@ -292,6 +394,9 @@ try {
     }
 
 } catch (Exception $e) {
+    // Save failed order to fallback file
+    saveToFallbackFile($input ?? [], false, $e->getMessage());
+    
     echo json_encode([
         'success' => false,
         'message' => 'Error creating order: ' . $e->getMessage()
