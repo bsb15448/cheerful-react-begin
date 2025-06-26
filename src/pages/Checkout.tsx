@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '@/contexts/CartContext';
 import { useDeliveryConfig } from '@/hooks/useDeliveryConfig';
-import { initKonnectPayment } from '@/services/konnectPayment';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -143,59 +142,21 @@ const Checkout = () => {
     setIsSubmitting(true);
     
     try {
-      if (selectedPaymentMethod === 'card') {
-        // Generate unique order ID
-        const orderId = `ORDER-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-        
-        // Calculate total amount
-        const orderSummary = getOrderSummary(getTotalPrice(), data.pays_customer || 'Tunisie');
-        
-        // Initialize Konnect payment
-        const paymentResponse = await initKonnectPayment({
-          amount: orderSummary.total,
-          firstName: data.prenom_customer,
-          lastName: data.nom_customer,
-          email: data.email_customer,
-          orderId: orderId,
-        });
-        
-        // Store order data in localStorage for potential completion after payment
-        const orderData = {
-          ...data,
-          date_livraison_souhaitee: deliveryDate,
-          items,
-          orderSummary: {
-            ...orderSummary,
-            itemDiscounts: getTotalDiscount(),
-            originalSubtotal: getOriginalTotalPrice()
-          },
-          orderId: orderId,
-          paymentRef: paymentResponse.paymentRef
-        };
-        
-        localStorage.setItem('pendingOrder', JSON.stringify(orderData));
-        
-        // Redirect to Konnect payment page
-        window.location.href = paymentResponse.payUrl;
-        
-      } else {
-        // Cash payment - process normally
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        console.log('Order submitted:', {
-          ...data,
-          date_livraison_souhaitee: deliveryDate,
-          items,
-          orderSummary: {
-            ...getOrderSummary(getTotalPrice(), data.pays_customer || 'Tunisie'),
-            itemDiscounts: getTotalDiscount(),
-            originalSubtotal: getOriginalTotalPrice()
-          }
-        });
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      console.log('Order submitted:', {
+        ...data,
+        date_livraison_souhaitee: deliveryDate,
+        items,
+        orderSummary: {
+          ...orderSummary,
+          itemDiscounts: itemDiscountTotal,
+          originalSubtotal: getOriginalTotalPrice()
+        }
+      });
 
-        setOrderSuccess(true);
-        clearCart();
-      }
+      setOrderSuccess(true);
+      clearCart();
     } catch (error) {
       console.error('Error submitting order:', error);
       alert(t('errors.orderSubmission'));
@@ -810,7 +771,7 @@ const Checkout = () => {
                     <p>• Livraison mondial disponible</p>
                   </div>
 
-                  {/* Payment Methods - updated */}
+                  {/* Payment Methods - moved here and only show when step 3 */}
                   {currentStep === 3 && (
                     <div className="space-y-4 pt-4 border-t border-gray-100">
                       <div className="flex items-center gap-3 mb-4">
@@ -844,27 +805,29 @@ const Checkout = () => {
                           </Button>
                         </div>
 
-                        <Button 
-                          onClick={handleSubmit(onSubmit)}
-                          disabled={isSubmitting || !deliveryDate || !isCurrentStepValid()}
-                          className="w-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center gap-2 py-3 text-sm sm:text-base"
-                        >
-                          {selectedPaymentMethod === 'card' ? (
-                            <>
-                              <CreditCard className="w-4 h-4" />
-                              <span className="truncate">
-                                {isSubmitting ? t('form.buttons.processing') : `${t('payment.payButton')} (${formatPrice(orderSummary.total)})`}
-                              </span>
-                            </>
-                          ) : (
-                            <>
-                              <Banknote className="w-4 h-4" />
-                              <span className="truncate">
-                                {isSubmitting ? t('form.buttons.processing') : `${t('payment.orderButton')} (${formatPrice(orderSummary.total)})`}
-                              </span>
-                            </>
-                          )}
-                        </Button>
+                        {selectedPaymentMethod === 'card' ? (
+                          <Button 
+                            onClick={handleSubmit(onSubmit)}
+                            disabled={isSubmitting || !deliveryDate || !isCurrentStepValid()}
+                            className="w-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center gap-2 py-3 text-sm sm:text-base"
+                          >
+                            <CreditCard className="w-4 h-4" />
+                            <span className="truncate">
+                              {isSubmitting ? t('form.buttons.processing') : `${t('payment.payButton')} (${formatPrice(orderSummary.total)})`}
+                            </span>
+                          </Button>
+                        ) : (
+                          <Button 
+                            onClick={handleSubmit(onSubmit)}
+                            disabled={isSubmitting || !deliveryDate || !isCurrentStepValid()}
+                            className="w-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center gap-2 py-3 text-sm sm:text-base"
+                          >
+                            <Banknote className="w-4 h-4" />
+                            <span className="truncate">
+                              {isSubmitting ? t('form.buttons.processing') : `${t('payment.orderButton')} (${formatPrice(orderSummary.total)})`}
+                            </span>
+                          </Button>
+                        )}
 
                         {selectedPaymentMethod === 'card' && (
                           <div className="text-center pt-4 border-t border-gray-100">
