@@ -16,6 +16,8 @@ import frProductsTranslations from './locales/products/fr.json';
 import enProductsTranslations from './locales/products/en.json';
 import frCheckoutTranslations from './locales/checkout/fr.json';
 import enCheckoutTranslations from './locales/checkout/en.json';
+import frInvoiceTranslations from './locales/invoice/fr.json';
+import enInvoiceTranslations from './locales/invoice/en.json';
 
 const resources = {
   fr: {
@@ -26,6 +28,7 @@ const resources = {
     newsletter: frNewsletterTranslations,
     products: frProductsTranslations,
     checkout: frCheckoutTranslations,
+    invoice: frInvoiceTranslations,
   },
   en: {
     translation: enTranslations,
@@ -35,6 +38,7 @@ const resources = {
     newsletter: enNewsletterTranslations,
     products: enProductsTranslations,
     checkout: enCheckoutTranslations,
+    invoice: enInvoiceTranslations,
   },
 };
 

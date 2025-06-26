@@ -1,31 +1,98 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Download } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import ContactModal from '@/components/modals/ContactModal';
 import StoreFinderModal from '@/components/modals/StoreFinderModal';
+import { fetchOrderDetails } from '@/services/orderDetailsService';
+import { generateInvoicePDF } from '@/services/invoiceGenerator';
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation('checkout');
+  const { t, i18n } = useTranslation('checkout');
   const { clearCart } = useCart();
   const [searchParams] = useSearchParams();
   const [isContactOpen, setIsContactOpen] = React.useState(false);
   const [isStoreFinderOpen, setIsStoreFinderOpen] = React.useState(false);
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [pdfGenerated, setPdfGenerated] = useState(false);
+
+  const paymentRef = searchParams.get('payment_ref');
+  const orderId = searchParams.get('order_id');
+
+  const generateAndDownloadInvoice = async () => {
+    if (!orderId) return;
+
+    setIsGeneratingPDF(true);
+    try {
+      const orderDetails = await fetchOrderDetails(orderId);
+      
+      const invoiceData = {
+        orderNumber: orderDetails.numero_commande,
+        orderDate: orderDetails.date_creation_order,
+        customer: {
+          nom: orderDetails.customer.nom,
+          prenom: orderDetails.customer.prenom,
+          email: orderDetails.customer.email,
+          telephone: orderDetails.customer.telephone,
+          adresse: orderDetails.customer.adresse,
+          ville: orderDetails.customer.ville,
+          code_postal: orderDetails.customer.code_postal,
+          pays: orderDetails.customer.pays,
+        },
+        items: orderDetails.items.map(item => ({
+          nom_product: item.nom_product_snapshot,
+          reference: item.reference_product_snapshot,
+          price: item.price_product_snapshot,
+          size: item.size_selected,
+          color: item.color_selected,
+          quantity: item.quantity_ordered,
+          discount: item.discount_item,
+        })),
+        delivery_address: orderDetails.delivery_address ? {
+          nom: orderDetails.delivery_address.nom_destinataire,
+          prenom: orderDetails.delivery_address.prenom_destinataire,
+          telephone: orderDetails.delivery_address.telephone_destinataire,
+          adresse: orderDetails.delivery_address.adresse_livraison,
+          ville: orderDetails.delivery_address.ville_livraison,
+          code_postal: orderDetails.delivery_address.code_postal_livraison,
+          pays: orderDetails.delivery_address.pays_livraison,
+          instructions: orderDetails.delivery_address.instructions_livraison,
+        } : undefined,
+        delivery_date: orderDetails.date_livraison_souhaitee,
+        sous_total: orderDetails.sous_total_order,
+        discount_amount: orderDetails.discount_amount_order,
+        delivery_cost: orderDetails.delivery_cost_order,
+        total_order: orderDetails.total_order,
+        status: orderDetails.status_order,
+        payment_method: orderDetails.payment_method,
+        notes: orderDetails.notes_order,
+      };
+
+      await generateInvoicePDF(invoiceData, i18n.language as 'fr' | 'en');
+      setPdfGenerated(true);
+    } catch (error) {
+      console.error('Error generating invoice PDF:', error);
+    } finally {
+      setIsGeneratingPDF(false);
+    }
+  };
 
   useEffect(() => {
     // Clear the cart after successful payment
     clearCart();
-  }, [clearCart]);
-
-  const paymentRef = searchParams.get('payment_ref');
-  const orderId = searchParams.get('order_id');
+    
+    // Auto-generate and download PDF invoice if order ID is available
+    if (orderId && !pdfGenerated) {
+      generateAndDownloadInvoice();
+    }
+  }, [clearCart, orderId, pdfGenerated]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -75,6 +142,24 @@ const PaymentSuccess = () => {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 
+                {orderId && (
+                  <Button 
+                    variant="outline"
+                    onClick={generateAndDownloadInvoice}
+                    disabled={isGeneratingPDF}
+                    className="w-full"
+                  >
+                    {isGeneratingPDF ? (
+                      <>Génération de la facture...</>
+                    ) : (
+                      <>
+                        <Download className="w-4 h-4 mr-2" />
+                        Télécharger la facture
+                      </>
+                    )}
+                  </Button>
+                )}
+                
                 <Button 
                   variant="outline"
                   onClick={() => setIsContactOpen(true)}
@@ -87,6 +172,9 @@ const PaymentSuccess = () => {
               <div className="mt-8 text-sm text-gray-500">
                 <p>Un email de confirmation a été envoyé à votre adresse.</p>
                 <p>Votre commande sera traitée dans les plus brefs délais.</p>
+                {pdfGenerated && (
+                  <p className="text-green-600 mt-2">✓ Facture téléchargée automatiquement</p>
+                )}
               </div>
             </CardContent>
           </Card>
