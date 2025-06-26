@@ -22,6 +22,7 @@ import Header from '@/components/layout/Header';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import ContactModal from '@/components/modals/ContactModal';
 import StoreFinderModal from '@/components/modals/StoreFinderModal';
+import { initKonnectPayment } from '@/services/konnectPayment';
 
 const checkoutSchema = z.object({
   nom_customer: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
@@ -142,24 +143,45 @@ const Checkout = () => {
     setIsSubmitting(true);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Generate a unique order ID
+      const orderId = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       
-      console.log('Order submitted:', {
-        ...data,
-        date_livraison_souhaitee: deliveryDate,
-        items,
-        orderSummary: {
-          ...orderSummary,
-          itemDiscounts: itemDiscountTotal,
-          originalSubtotal: getOriginalTotalPrice()
-        }
-      });
+      if (selectedPaymentMethod === 'card') {
+        // Initialize Konnect payment
+        const paymentData = await initKonnectPayment({
+          amount: orderSummary.total,
+          firstName: data.prenom_customer,
+          lastName: data.nom_customer,
+          email: data.email_customer,
+          orderId: orderId,
+        });
+        
+        // Redirect to Konnect payment page
+        window.location.href = paymentData.payUrl;
+        return;
+      } else {
+        // Cash on delivery - process as before
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        console.log('Order submitted:', {
+          ...data,
+          date_livraison_souhaitee: deliveryDate,
+          items,
+          orderSummary: {
+            ...orderSummary,
+            itemDiscounts: itemDiscountTotal,
+            originalSubtotal: getOriginalTotalPrice()
+          },
+          orderId,
+          paymentMethod: 'cash'
+        });
 
-      setOrderSuccess(true);
-      clearCart();
+        setOrderSuccess(true);
+        clearCart();
+      }
     } catch (error) {
       console.error('Error submitting order:', error);
-      alert(t('errors.orderSubmission'));
+      alert(error instanceof Error ? error.message : t('errors.orderSubmission'));
     } finally {
       setIsSubmitting(false);
     }

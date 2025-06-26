@@ -11,6 +11,8 @@ import CategoryPage from "./pages/CategoryPage"
 import ProductDetailsPage from "./pages/ProductDetailsPage"
 import NotFound from "./pages/NotFound"
 import Checkout from "./pages/Checkout"
+import PaymentSuccess from "./pages/PaymentSuccess"
+import PaymentFailure from "./pages/PaymentFailure"
 import AdminLogin from "./pages/admin/AdminLogin"
 import AdminDashboard from "./pages/admin/AdminDashboard"
 import AdminReservations from "./pages/admin/AdminReservations"
@@ -39,6 +41,8 @@ function App() {
                 <Route path="/category/:category/:subcategory" element={<CategoryPage />} />
                 <Route path="/product/:id" element={<ProductDetailsPage />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/payment-success" element={<PaymentSuccess />} />
+                <Route path="/payment-failure" element={<PaymentFailure />} />
                 <Route path="/admin" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />
                 <Route path="/admin/reservations" element={<AdminReservations />} />
