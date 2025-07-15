@@ -28,7 +28,6 @@ const Personalize = () => {
       navigate('/child-count');
       return;
     }
-    
     if (!selectedPlan || !['onetime', 'subscription'].includes(selectedPlan)) {
       toast.error('Veuillez d\'abord sélectionner un plan');
       navigate('/plan-selection');
@@ -213,9 +212,7 @@ const Personalize = () => {
       <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Header section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-slate-700 mb-4">
-            Personnalisez votre livre
-          </h1>
+          <h1 className="text-4xl font-bold text-slate-700 mb-4">Remplissez le formulaire</h1>
           
         </div>
 
