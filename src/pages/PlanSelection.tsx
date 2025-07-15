@@ -11,7 +11,6 @@ const PlanSelection = () => {
   const children = location.state?.children || [];
   const childCount = location.state?.childCount;
   const [selectedPlan, setSelectedPlan] = useState<'onetime' | 'subscription' | null>(null);
-  const [showAllFeatures, setShowAllFeatures] = useState(false);
 
   // Navigation guard - redirect to child-count if no valid childCount
   useEffect(() => {
@@ -20,11 +19,23 @@ const PlanSelection = () => {
       navigate('/child-count');
     }
   }, [childCount, navigate]);
+
+  // Calculate prices based on child count
+  const getSubscriptionPrice = (count: number) => {
+    const prices = { 1: 29, 2: 56, 3: 83, 4: 109 };
+    return prices[count as keyof typeof prices] || 29;
+  };
+
+  const getOnetimePrice = (count: number) => {
+    const prices = { 1: 39, 2: 74, 3: 110, 4: 145 };
+    return prices[count as keyof typeof prices] || 39;
+  };
+
   const plans = {
     subscription: {
-      price: 29,
-      title: 'ABONNEMENT MENSUEL',
-      subtitle: '29 $/mois – Économisez 25 %',
+      price: getSubscriptionPrice(childCount),
+      title: '🏆 ABONNEMENT MENSUEL',
+      subtitle: `${getSubscriptionPrice(childCount)} €/mois – Économisez 25 %`,
       features: [{
         text: '1 livre surprise personnalisé par mois par enfant selon vos thématiques choisis',
         highlight: false
@@ -46,9 +57,9 @@ const PlanSelection = () => {
       }]
     },
     onetime: {
-      price: 45,
-      title: 'ACHAT UNIQUE',
-      subtitle: '45 $ – Un cadeau inoubliable',
+      price: getOnetimePrice(childCount),
+      title: '🎁 ACHAT UNIQUE',
+      subtitle: `${getOnetimePrice(childCount)} € – Un cadeau inoubliable`,
       features: [{
         text: 'L\'option idéale pour une occasion spéciale.',
         highlight: false
@@ -128,20 +139,13 @@ const PlanSelection = () => {
 
                   {/* Features */}
                   <ul className="space-y-2 mb-3">
-                    {plans.subscription.features.slice(0, showAllFeatures ? plans.subscription.features.length : 4).map((feature, index) => <li key={index} className="flex items-start gap-2">
+                    {plans.subscription.features.map((feature, index) => <li key={index} className="flex items-start gap-2">
                         <Check className="w-3 h-3 text-green-500 mt-1 shrink-0" />
                         <span className="text-slate-600 text-xs md:text-sm leading-relaxed">
                           {feature.text}
                         </span>
                       </li>)}
                   </ul>
-                  
-                  {!showAllFeatures && plans.subscription.features.length > 4 && <button onClick={e => {
-                  e.stopPropagation();
-                  setShowAllFeatures(true);
-                }} className="flex items-center gap-1 text-purple-600 text-xs font-medium hover:text-purple-700 mb-2">
-                      Voir plus <ChevronDown className="w-3 h-3" />
-                    </button>}
                 </div>
               </div>
 
