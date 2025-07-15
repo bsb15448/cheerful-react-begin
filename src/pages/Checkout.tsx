@@ -6,7 +6,6 @@ import { ArrowLeft, Shield, Lock, Truck, Star, Check, CheckCircle, Eye, EyeOff }
 import { paymentService, CreateOrderRequest } from '@/services/paymentService';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
-
 import LoginModal from '@/components/auth/LoginModal';
 import SignupModal from '@/components/auth/SignupModal';
 import ResponsiveFloatingElements from '@/components/ui/ResponsiveFloatingElements';
@@ -31,18 +30,14 @@ const Checkout = () => {
       navigate('/personalize');
       return;
     }
-    
+
     // Check if all children have required fields
-    const isValidChildren = children.every((child: any) => 
-      child.name && child.age && child.eyeColor && child.objective && child.photoUrl && child.message
-    );
-    
+    const isValidChildren = children.every((child: any) => child.name && child.age && child.eyeColor && child.objective && child.photoUrl && child.message);
     if (!isValidChildren) {
       toast.error('Veuillez compléter toutes les informations des enfants');
       navigate('/personalize');
       return;
     }
-    
     if (!selectedPlan || !['onetime', 'subscription'].includes(selectedPlan)) {
       toast.error('Veuillez sélectionner un plan valide');
       navigate('/plan-selection');
@@ -133,17 +128,14 @@ const Checkout = () => {
     console.log('User ID:', user?.id);
     console.log('Is processing:', isProcessing);
     console.log('Requires auth:', requiresAuth);
-    
     if (!isFormValid) {
       toast.error('Veuillez remplir tous les champs obligatoires');
       return;
     }
-    
     if (isProcessing) {
       console.log('Already processing, ignoring click');
       return;
     }
-    
     setIsProcessing(true);
     try {
       if (!children || children.length === 0) throw new Error('Aucun enfant sélectionné');
@@ -446,7 +438,7 @@ const Checkout = () => {
                 </div>
                 {!isAuthenticated && <div>
                     <label className="block text-slate-700 font-semibold mb-1 text-sm">
-                      Créer un mot de passe <span className="text-slate-500 font-normal">(optionnel)</span>
+                      Créer un mot de passe 
                     </label>
                     <div className="relative">
                       <Input type={showPassword ? "text" : "password"} value={formData.password} onChange={e => updateForm('password', e.target.value)} placeholder="Choisir un mot de passe" className="w-full px-3 py-2 pr-10 rounded-lg border-2 border-slate-200 focus:border-purple-300 text-sm" />
@@ -481,7 +473,7 @@ const Checkout = () => {
               </div>
               <div className="flex justify-between items-center">
                 <span>⚡ Délai de livraison</span>
-                <span className="font-semibold">5-7 jours ouvrés</span>
+                <span className="font-semibold">7-10 jours ouvrés</span>
               </div>
             </div>
 
