@@ -4,6 +4,7 @@ import { useCart } from '@/hooks/useCart';
 import { useIncompleteOrder } from '@/hooks/useIncompleteOrder';
 import { useNavigate } from 'react-router-dom';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import { getObjectiveLabel } from '@/utils/objectiveLabels';
 interface CartDropdownProps {
   children: React.ReactNode;
 }
@@ -87,7 +88,7 @@ const CartDropdown = ({
                               {child.name || `Enfant ${index + 1}`}
                             </p>
                             <p className="text-xs text-orange-600">
-                              {child.age} ans {child.objective && `• ${child.objective}`}
+                              {child.age} ans {child.objective && `• ${getObjectiveLabel(child.objective)}`}
                             </p>
                           </div>
                         </div>

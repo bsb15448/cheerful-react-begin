@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { AdminUser } from '@/services/adminUserService';
 import { userDataService, Child, Order } from '@/services/userDataService';
+import { getObjectiveLabel } from '@/utils/objectiveLabels';
 
 interface ClientDetailsModalProps {
   client: AdminUser;
@@ -208,10 +209,10 @@ const ClientDetailsModal = ({ client, isOpen, onClose }: ClientDetailsModalProps
                               </div>
                             )}
                             {child.objective && (
-                              <div className="mb-2">
-                                <p className="text-sm text-slate-500">Objectif:</p>
-                                <p className="text-sm">{child.objective}</p>
-                              </div>
+                               <div className="mb-2">
+                                 <p className="text-sm text-slate-500">Objectif:</p>
+                                 <p className="text-sm">{getObjectiveLabel(child.objective)}</p>
+                               </div>
                             )}
                             {child.message && (
                               <div className="mb-2">

@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Calendar, Package, Clock, AlertCircle, User, Image } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { getObjectiveLabel } from '@/utils/objectiveLabels';
 
 const API_BASE_URL = "https://www.respizenmedical.com/mylittle/api";
 
@@ -171,7 +172,7 @@ const SubscriptionOrderModal = ({ isOpen, onClose, subscription }: SubscriptionO
                           )}
                           {child.objective && (
                             <p className="text-xs text-orange-600 mt-1">
-                              <strong>Objectif:</strong> {child.objective}
+                              <strong>Objectif:</strong> {getObjectiveLabel(child.objective)}
                             </p>
                           )}
                           {child.message && (
@@ -297,9 +298,9 @@ const SubscriptionOrderModal = ({ isOpen, onClose, subscription }: SubscriptionO
                                         </p>
                                       )}
                                       {item.child_objective && (
-                                        <p className="text-xs text-gray-500">
-                                          <strong>Objectif:</strong> {item.child_objective}
-                                        </p>
+                                         <p className="text-xs text-gray-500">
+                                           <strong>Objectif:</strong> {getObjectiveLabel(item.child_objective)}
+                                         </p>
                                       )}
                                       {item.child_message && (
                                         <p className="text-xs text-gray-500">

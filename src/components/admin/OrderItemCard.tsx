@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Download, User } from 'lucide-react';
 import { OrderItem } from '@/services/adminOrderService';
 import { toast } from 'sonner';
+import { getObjectiveLabel } from '@/utils/objectiveLabels';
 
 interface OrderItemCardProps {
   item: OrderItem;
@@ -127,7 +128,7 @@ const OrderItemCard = ({ item, index }: OrderItemCardProps) => {
             <p><strong>Couleur des yeux:</strong> {item.child_eye_color}</p>
           )}
           {item.child_objective && (
-            <p><strong>Objectif:</strong> {item.child_objective}</p>
+            <p><strong>Objectif:</strong> {getObjectiveLabel(item.child_objective)}</p>
           )}
           {item.child_message && (
             <p><strong>Message:</strong> {item.child_message}</p>

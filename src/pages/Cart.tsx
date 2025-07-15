@@ -8,6 +8,7 @@ import { useCart } from '@/hooks/useCart';
 import { useIncompleteOrder } from '@/hooks/useIncompleteOrder';
 import { useVisitorTracking } from '@/hooks/useVisitorTracking';
 import Footer from '@/components/Footer';
+import { getObjectiveLabel } from '@/utils/objectiveLabels';
 
 const Cart = () => {
   useVisitorTracking('/cart');
@@ -34,14 +35,6 @@ const Cart = () => {
     clearIncompleteOrder();
   };
 
-  const getObjectiveLabel = (objective: string) => {
-    const labels = {
-      'courage': 'Développer le courage',
-      'confiance': 'Renforcer la confiance en soi',
-      'creativite': 'Stimuler la créativité'
-    };
-    return labels[objective as keyof typeof labels] || objective;
-  };
 
   return (
  <div 
