@@ -20,6 +20,21 @@ const Personalize = () => {
   } = useIncompleteOrder();
   const childCount = location.state?.childCount || 1;
   const selectedPlan = location.state?.selectedPlan;
+
+  // Navigation guard - redirect to appropriate page if missing data
+  useEffect(() => {
+    if (!childCount || childCount < 1 || childCount > 4) {
+      toast.error('Veuillez d\'abord sélectionner le nombre d\'enfants');
+      navigate('/child-count');
+      return;
+    }
+    
+    if (!selectedPlan || !['onetime', 'subscription'].includes(selectedPlan)) {
+      toast.error('Veuillez d\'abord sélectionner un plan');
+      navigate('/plan-selection');
+      return;
+    }
+  }, [childCount, selectedPlan, navigate]);
   const [currentChildIndex, setCurrentChildIndex] = useState(0);
   const [children, setChildren] = useState(() => Array.from({
     length: childCount

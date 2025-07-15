@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Check, ChevronDown } from 'lucide-react';
+import { toast } from 'sonner';
 
 import ResponsiveFloatingElements from '@/components/ui/ResponsiveFloatingElements';
 const PlanSelection = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const children = location.state?.children || [];
+  const childCount = location.state?.childCount;
   const [selectedPlan, setSelectedPlan] = useState<'onetime' | 'subscription' | null>(null);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
+
+  // Navigation guard - redirect to child-count if no valid childCount
+  useEffect(() => {
+    if (!childCount || childCount < 1 || childCount > 4) {
+      toast.error('Veuillez d\'abord sélectionner le nombre d\'enfants');
+      navigate('/child-count');
+    }
+  }, [childCount, navigate]);
   const plans = {
     subscription: {
       price: 29,

@@ -23,6 +23,32 @@ const Checkout = () => {
   const children = location.state?.children || [];
   const selectedPlan = location.state?.selectedPlan || 'onetime';
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // Navigation guard - redirect to personalize if no valid children data
+  useEffect(() => {
+    if (!children || children.length === 0) {
+      toast.error('Veuillez d\'abord personnaliser vos livres');
+      navigate('/personalize');
+      return;
+    }
+    
+    // Check if all children have required fields
+    const isValidChildren = children.every((child: any) => 
+      child.name && child.age && child.eyeColor && child.objective && child.photoUrl && child.message
+    );
+    
+    if (!isValidChildren) {
+      toast.error('Veuillez compléter toutes les informations des enfants');
+      navigate('/personalize');
+      return;
+    }
+    
+    if (!selectedPlan || !['onetime', 'subscription'].includes(selectedPlan)) {
+      toast.error('Veuillez sélectionner un plan valide');
+      navigate('/plan-selection');
+      return;
+    }
+  }, [children, selectedPlan, navigate]);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [requiresAuth, setRequiresAuth] = useState(false);
