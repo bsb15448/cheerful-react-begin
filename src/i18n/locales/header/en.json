@@ -1,0 +1,27 @@
+{
+  "navigation": {
+    "pretAPorter": "Ready to Wear",
+    "accessoires": "Accessories",
+    "boutique": "The Shop"
+  },
+  "search": {
+    "placeholder": "Search...",
+    "title": "Search"
+  },
+  "banner": {
+    "delivery": "delivery throughout tunisia"
+  },
+  "currency": {
+    "title": "Currency"
+  },
+  "language": {
+    "switchToEnglish": "Switch to English",
+    "switchToFrench": "Passer au français"
+  },
+  "cart": {
+    "title": "Cart"
+  },
+  "wishlist": {
+    "title": "Wishlist"
+  }
+}

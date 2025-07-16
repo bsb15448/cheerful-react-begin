@@ -1,0 +1,13 @@
+{
+  "badges": {
+    "new": "NOUVEAU",
+    "sale": "SOLDE"
+  },
+  "actions": {
+    "addToCart": "Ajouter au panier",
+    "sizeRequired": "Taille requise",
+    "selectSize": "Veuillez sélectionner une taille",
+    "productAdded": "Produit ajouté",
+    "addedToCart": "a été ajouté à votre panier"
+  }
+}

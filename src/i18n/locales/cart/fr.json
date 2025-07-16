@@ -1,0 +1,14 @@
+{
+  "title": "Panier",
+  "empty": {
+    "title": "Votre panier est vide",
+    "description": "Découvrez notre collection exceptionnelle"
+  },
+  "product": {
+    "size": "Taille",
+    "color": "Couleur",
+    "remove": "Supprimer"
+  },
+  "total": "Total",
+  "checkout": "Finaliser la commande"
+}

@@ -1,0 +1,35 @@
+{
+  "details": {
+    "title": "Détails du produit",
+    "description": "Description",
+    "specifications": "Spécifications",
+    "reviews": "Avis",
+    "shipping": "Livraison",
+    "returns": "Retours"
+  },
+  "actions": {
+    "addToCart": "Ajouter au panier",
+    "addToWishlist": "Ajouter aux favoris",
+    "removeFromWishlist": "Retirer des favoris",
+    "buyNow": "Acheter maintenant",
+    "selectSize": "Sélectionner la taille",
+    "selectColor": "Sélectionner la couleur",
+    "sizeGuide": "Guide des tailles"
+  },
+  "price": {
+    "from": "À partir de",
+    "sale": "En promotion",
+    "originalPrice": "Prix original",
+    "discount": "Réduction"
+  },
+  "availability": {
+    "inStock": "En stock",
+    "outOfStock": "Rupture de stock",
+    "lowStock": "Stock limité",
+    "preOrder": "Pré-commande"
+  },
+  "related": {
+    "title": "Produits similaires",
+    "youMayAlsoLike": "Vous pourriez aussi aimer"
+  }
+}

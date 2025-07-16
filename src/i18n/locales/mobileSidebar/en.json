@@ -1,0 +1,39 @@
+{
+  "title": "Menu",
+  "categories": {
+    "pretAPorter": {
+      "title": "Ready to Wear",
+      "description": "Ready-to-wear collections",
+      "all": "All items"
+    },
+    "accessoires": {
+      "title": "Accessories",
+      "description": "Fashion accessories",
+      "all": "All accessories"
+    },
+    "boutique": {
+      "title": "The Shop",
+      "description": "Our shop",
+      "all": "All products"
+    }
+  },
+  "items": {
+    "chemise": "Shirts",
+    "tshirt": "T-shirts",
+    "polo": "Polos",
+    "chaussure": "Shoes",
+    "ceinture": "Belts",
+    "maroquinerie": "Leather goods",
+    "montre": "Watches",
+    "lunettes": "Glasses",
+    "parfum": "Perfumes"
+  },
+  "contact": {
+    "title": "Contact",
+    "phone": "Phone",
+    "followUs": "Follow us"
+  },
+  "currency": {
+    "title": "Currency"
+  }
+}

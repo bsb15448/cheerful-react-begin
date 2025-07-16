@@ -1,0 +1,30 @@
+{
+  "brand": {
+    "description": "Sartoria italiana d'eccellenza dal 1953. Ogni capo è realizzato a mano nei nostri atelier di Milano."
+  },
+  "sections": {
+    "collections": "Collections",
+    "services": "Services",
+    "payment": "Moyen de paiement"
+  },
+  "links": {
+    "costumes": "Costumes",
+    "chemises": "Chemises",
+    "accessoires": "Accessoires",
+    "surMesure": "Sur Mesure",
+    "sizeGuide": "Guide des Tailles",
+    "livraison": "Livraison",
+    "retours": "Retours",
+    "contact": "Contact"
+  },
+  "contact": {
+    "phone": "+216 56 829 717",
+    "email": "contact@spadadibattaglia.com",
+    "address": "SPADA DI BATTAGLIA, P9, Tunis, La Marsa, Tunisia"
+  },
+  "copyright": "© 2024 Paola Di Battaglia • Tunis",
+  "developer": {
+    "text": "Developed by",
+    "name": "Iheb Chebbi"
+  }
+}

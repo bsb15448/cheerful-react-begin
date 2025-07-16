@@ -1,0 +1,9 @@
+{
+  "title": "New arrivals",
+  "loadMore": "Load more",
+  "remaining": "remaining",
+  "noProducts": {
+    "title": "No products found",
+    "description": "Try modifying your filters or search"
+  }
+}

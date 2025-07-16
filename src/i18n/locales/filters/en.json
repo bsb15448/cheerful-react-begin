@@ -1,0 +1,32 @@
+{
+  "title": "Filters",
+  "clear": "Clear filters",
+  "sorting": {
+    "title": "Sort by",
+    "name": "Sort by name",
+    "priceAsc": "Price ascending",
+    "priceDesc": "Price descending",
+    "newest": "Newest"
+  },
+  "categories": {
+    "title": "Product type",
+    "all": "All types"
+  },
+  "price": {
+    "title": "Price (TND)",
+    "min": "Min",
+    "max": "Max"
+  },
+  "size": {
+    "title": "Size",
+    "all": "All sizes"
+  },
+  "color": {
+    "title": "Color",
+    "all": "All colors"
+  },
+  "results": {
+    "single": "product found",
+    "plural": "products found"
+  }
+}

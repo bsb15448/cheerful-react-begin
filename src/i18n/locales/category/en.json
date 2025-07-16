@@ -1,0 +1,23 @@
+{
+  "title": "Categories",
+  "filters": {
+    "title": "Filters",
+    "price": "Price",
+    "size": "Size",
+    "color": "Color",
+    "brand": "Brand",
+    "sortBy": "Sort by",
+    "clear": "Clear filters"
+  },
+  "sorting": {
+    "newest": "Newest",
+    "priceLowToHigh": "Price low to high",
+    "priceHighToLow": "Price high to low",
+    "popularity": "Popularity",
+    "bestSelling": "Best selling"
+  },
+  "noProducts": "No products found",
+  "loading": "Loading...",
+  "showMore": "Show more",
+  "itemsFound": "items found"
+}
