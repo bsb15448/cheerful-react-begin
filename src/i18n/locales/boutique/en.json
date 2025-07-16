@@ -1,18 +1,27 @@
 {
   "title": "The Shop",
+  "hero": {
+    "subtitle": "Masculine excellence at your fingertips"
+  },
   "gallery": {
     "title": "Gallery",
-    "subtitle": "Discover our collection"
+    "subtitle": "Discover our collection",
+    "style1": "Classic Elegance",
+    "style2": "Modern Sophistication",
+    "collection": "Our Collection"
   },
   "about": {
     "title": "About Us",
     "text": "From casual to chic, we have everything you need to be at the forefront of men's fashion. Our boutique offers an exceptional selection of clothing and accessories for the modern man who wants to express his unique style.",
-    "description": "Since our creation, we are committed to offering products of exceptional quality combining elegance and modernity. Whether you are looking for a casual look for everyday wear or a sophisticated outfit for a special occasion, our team of experts is here to advise you."
+    "description": "Since our creation, we are committed to offering products of exceptional quality combining elegance and modernity. Whether you are looking for a casual look for everyday wear or a sophisticated outfit for a special occasion, our team of experts is here to advise you.",
+    "point1": "Premium materials carefully selected",
+    "point2": "Personalized advice and custom service",
+    "point3": "Current and timeless trends",
+    "experience": "15+ years of experience"
   },
-  "contact": {
-    "title": "Visit our shop",
-    "address": "123 Fashion Avenue, Tunis",
-    "phone": "+216 XX XXX XXX",
-    "hours": "Mon-Sat: 9am-7pm"
+  "cta": {
+    "title": "From casual to chic, we have everything you need",
+    "subtitle": "to be at the forefront of men's fashion",
+    "button": "Discover the Collection"
   }
 }
