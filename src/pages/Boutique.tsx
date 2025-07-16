@@ -2,12 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
 const Boutique = () => {
-  const { t } = useTranslation('boutique');
-
-  return (
-    <div className="min-h-screen bg-white">
+  const {
+    t
+  } = useTranslation('boutique');
+  return <div className="min-h-screen bg-white">
       <Header />
       
       <div className="pt-20 pb-12">
@@ -28,11 +27,7 @@ const Boutique = () => {
               {/* Left Image */}
               <div className="lg:col-span-1">
                 <div className="relative group overflow-hidden rounded-lg shadow-lg h-[500px]">
-                  <img
-                    src="/lovable-uploads/a0ae31b6-3896-47e5-920e-28630168af92.png"
-                    alt="Elegant man in grey suit"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                  <img src="/lovable-uploads/a0ae31b6-3896-47e5-920e-28630168af92.png" alt="Elegant man in grey suit" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
                 </div>
               </div>
@@ -40,27 +35,16 @@ const Boutique = () => {
               {/* Center Video */}
               <div className="lg:col-span-1">
                 <div className="relative overflow-hidden rounded-lg shadow-lg h-[500px]">
-                  <video
-                    src="/videomen.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/10"></div>
+                  <video src="/videomen.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                  
                 </div>
               </div>
 
               {/* Right Image */}
               <div className="lg:col-span-1">
                 <div className="relative group overflow-hidden rounded-lg shadow-lg h-[500px]">
-                  <img
-                    src="/lovable-uploads/ff77746c-f78f-42b7-9b26-65a46249268f.png"
-                    alt="Professional man in blue suit"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                  <img src="/lovable-uploads/ff77746c-f78f-42b7-9b26-65a46249268f.png" alt="Professional man in blue suit" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  
                 </div>
               </div>
             </div>
@@ -82,11 +66,7 @@ const Boutique = () => {
             
             <div className="relative">
               <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-lg">
-                <img
-                  src="/lovable-uploads/ff77746c-f78f-42b7-9b26-65a46249268f.png"
-                  alt="Professional man in blue suit"
-                  className="w-full h-full object-cover"
-                />
+                <img src="/lovable-uploads/ff77746c-f78f-42b7-9b26-65a46249268f.png" alt="Professional man in blue suit" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -107,8 +87,6 @@ const Boutique = () => {
       </div>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Boutique;
