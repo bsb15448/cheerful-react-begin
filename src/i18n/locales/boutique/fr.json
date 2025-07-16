@@ -1,0 +1,18 @@
+{
+  "title": "La Boutique",
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Découvrez notre collection"
+  },
+  "about": {
+    "title": "À propos de nous",
+    "text": "Du casual au chic, nous avons tout ce qu'il vous faut pour être à la pointe de la mode masculine. Notre boutique offre une sélection exceptionnelle de vêtements et accessoires pour l'homme moderne qui souhaite exprimer son style unique.",
+    "description": "Depuis notre création, nous nous engageons à offrir des produits de qualité exceptionnelle alliant élégance et modernité. Que vous recherchiez un look décontracté pour le quotidien ou une tenue sophistiquée pour une occasion spéciale, notre équipe d'experts est là pour vous conseiller."
+  },
+  "contact": {
+    "title": "Visitez notre boutique",
+    "address": "123 Avenue de la Mode, Tunis",
+    "phone": "+216 XX XXX XXX",
+    "hours": "Lun-Sam: 9h-19h"
+  }
+}

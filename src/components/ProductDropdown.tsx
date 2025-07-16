@@ -82,13 +82,13 @@ const ProductDropdown: React.FC<ProductDropdownProps> = ({ isOpen, activeCategor
     boutique: {
       title: 'La Boutique',
       image: 'https://placeholder.co/800x800/e5e7eb/6b7280?text=La+Boutique',
-      url: '/contact',
+      url: '/boutique',
       sections: [
         {
           title: 'Informations',
           items: [
-            { name: 'Notre Adresse', url: '/contact', itemgroup: 'adresse' },
-            { name: 'Horaires d\'ouverture', url: '/contact', itemgroup: 'horaires' },
+            { name: 'Galerie', url: '/boutique', itemgroup: 'gallery' },
+            { name: 'À propos', url: '/boutique', itemgroup: 'about' },
             { name: 'Nous Contacter', url: '/contact', itemgroup: 'contact' }
           ]
         }

@@ -20,6 +20,7 @@ import frNotFound from './locales/notFound/fr.json';
 import frCategoryPage from './locales/categoryPage/fr.json';
 import frWhatsapp from './locales/whatsapp/fr.json';
 import frHero from './locales/hero/fr.json';
+import frBoutique from './locales/boutique/fr.json';
 
 // Import English translations
 import enHeader from './locales/header/en.json';
@@ -40,6 +41,7 @@ import enNotFound from './locales/notFound/en.json';
 import enCategoryPage from './locales/categoryPage/en.json';
 import enWhatsapp from './locales/whatsapp/en.json';
 import enHero from './locales/hero/en.json';
+import enBoutique from './locales/boutique/en.json';
 
 const resources = {
   fr: {
@@ -61,6 +63,7 @@ const resources = {
     categoryPage: frCategoryPage,
     whatsapp: frWhatsapp,
     hero: frHero,
+    boutique: frBoutique,
   },
   en: {
     header: enHeader,
@@ -81,6 +84,7 @@ const resources = {
     categoryPage: enCategoryPage,
     whatsapp: enWhatsapp,
     hero: enHero,
+    boutique: enBoutique,
   },
 };
 
@@ -95,7 +99,7 @@ i18n
     },
     // Enable namespace support
     defaultNS: 'common',
-    ns: ['header', 'footer', 'home', 'mobileSidebar', 'checkout', 'category', 'product', 'contact', 'common', 'cart', 'filters', 'productCard', 'productGrid', 'promotions', 'notFound', 'categoryPage', 'whatsapp', 'hero'],
+    ns: ['header', 'footer', 'home', 'mobileSidebar', 'checkout', 'category', 'product', 'contact', 'common', 'cart', 'filters', 'productCard', 'productGrid', 'promotions', 'notFound', 'categoryPage', 'whatsapp', 'hero', 'boutique'],
   });
 
 export default i18n;

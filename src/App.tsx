@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import ProductDetails from "./pages/ProductDetails";
 import Category from "./pages/Category";
 import Checkout from "./pages/Checkout";
+import Boutique from "./pages/Boutique";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -48,6 +49,7 @@ const App = () => (
                   <Route path="/product/:id" element={<ProductDetails />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/boutique" element={<Boutique />} />
                   
                   {/* Routes administratives */}
                   <Route path="/admin/login" element={<AdminLogin />} />
