@@ -73,7 +73,7 @@ export default function Header() {
                 onClick={() => setLangOpen(!langOpen)}
                 className="flex items-center gap-1.5 px-3 py-2 rounded-md border border-brand-charcoal/30 hover:border-brand-gold/40 transition-colors duration-300"
               >
-                <img src={currentLang.flag} alt={currentLang.label} className="w-5 h-3.5 rounded-sm object-cover" />
+                <span className="text-base leading-none">{currentLang.flag}</span>
                 <span className="text-[12px] font-body font-semibold text-brand-cream/70 tracking-wider">
                   {currentLang.label}
                 </span>
