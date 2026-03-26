@@ -4,10 +4,9 @@ export default function DesignSystem() {
       {/* Header */}
       <header className="border-b border-brand-charcoal/20">
         <div className="max-w-[1200px] mx-auto px-8 py-6 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="L.S Transport" className="h-9" />
-            <span className="text-[11px] tracking-[0.2em] uppercase text-brand-muted font-semibold">Design System</span>
-          </a>
+          <div className="flex items-center gap-3">
+            <span className="text-[11px] tracking-[0.2em] uppercase text-brand-muted font-semibold">L.S Transport · Design System</span>
+          </div>
           <a href="/" className="text-[13px] text-brand-cream/50 hover:text-brand-gold transition-colors font-body">
             ← Retour au site
           </a>
