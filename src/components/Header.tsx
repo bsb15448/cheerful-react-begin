@@ -176,7 +176,7 @@ export default function Header() {
                           : 'border-brand-charcoal/30'
                       }`}
                     >
-                      <span className="text-base">{lang.flag}</span>
+                      <img src={lang.flag} alt={lang.label} className="w-5 h-3.5 rounded-sm object-cover" />
                       <span className="text-[11px] font-semibold text-brand-cream/70">{lang.label}</span>
                     </button>
                   ))}
