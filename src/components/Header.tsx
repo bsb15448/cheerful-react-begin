@@ -170,8 +170,7 @@ export default function Header() {
                           : 'border-brand-charcoal/30'
                       }`}
                     >
-                      <span className="text-base">{lang.flag}</span>
-                      <span className="text-[11px] font-semibold text-brand-cream/70">{lang.label}</span>
+                      <span className="text-lg">{lang.flag}</span>
                     </button>
                   ))}
                 </div>
