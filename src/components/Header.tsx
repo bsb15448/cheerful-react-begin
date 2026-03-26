@@ -108,7 +108,7 @@ export default function Header() {
                           currentLang.code === lang.code ? 'bg-brand-gold/5' : ''
                         }`}
                       >
-                        <img src={lang.flag} alt={lang.label} className="w-5 h-3.5 rounded-sm object-cover" />
+                        <span className="text-lg leading-none">{lang.flag}</span>
                         <span className="text-[13px] font-body font-medium text-brand-cream/80">
                           {lang.label}
                         </span>
