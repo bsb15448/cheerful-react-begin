@@ -73,10 +73,7 @@ export default function Header() {
                 onClick={() => setLangOpen(!langOpen)}
                 className="flex items-center gap-1.5 px-3 py-2 rounded-md border border-brand-charcoal/30 hover:border-brand-gold/40 transition-colors duration-300"
               >
-                <span className="text-base leading-none">{currentLang.flag}</span>
-                <span className="text-[12px] font-body font-semibold text-brand-cream/70 tracking-wider">
-                  {currentLang.label}
-                </span>
+                <span className="text-lg leading-none">{currentLang.flag}</span>
                 <svg
                   className={`w-3 h-3 text-brand-cream/40 transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`}
                   fill="none"
@@ -109,9 +106,6 @@ export default function Header() {
                         }`}
                       >
                         <span className="text-lg leading-none">{lang.flag}</span>
-                        <span className="text-[13px] font-body font-medium text-brand-cream/80">
-                          {lang.label}
-                        </span>
                         {currentLang.code === lang.code && (
                           <svg className="w-3.5 h-3.5 text-brand-gold ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -176,8 +170,7 @@ export default function Header() {
                           : 'border-brand-charcoal/30'
                       }`}
                     >
-                      <span className="text-base">{lang.flag}</span>
-                      <span className="text-[11px] font-semibold text-brand-cream/70">{lang.label}</span>
+                      <span className="text-lg">{lang.flag}</span>
                     </button>
                   ))}
                 </div>
