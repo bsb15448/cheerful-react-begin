@@ -4,10 +4,9 @@ export default function DesignSystem() {
       {/* Header */}
       <header className="border-b border-brand-charcoal/20">
         <div className="max-w-[1200px] mx-auto px-8 py-6 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="L.S Transport" className="h-9" />
-            <span className="text-[11px] tracking-[0.2em] uppercase text-brand-muted font-semibold">Design System</span>
-          </a>
+          <div className="flex items-center gap-3">
+            <span className="text-[11px] tracking-[0.2em] uppercase text-brand-muted font-semibold">L.S Transport · Design System</span>
+          </div>
           <a href="/" className="text-[13px] text-brand-cream/50 hover:text-brand-gold transition-colors font-body">
             ← Retour au site
           </a>
@@ -297,22 +296,22 @@ export default function DesignSystem() {
 
         {/* ─── Language Switcher ─── */}
         <section>
-          <SectionTitle title="Language Switcher" subtitle="Sélecteur de langue avec drapeaux" />
+          <SectionTitle title="Language Switcher" subtitle="Sélecteur de langue avec icônes de drapeaux" />
           <div className="mt-10 flex items-center gap-6">
             <div className="flex items-center gap-2">
               {[
-                { code: 'fr', label: 'FR', flag: '🇫🇷' },
-                { code: 'en', label: 'EN', flag: '🇬🇧' },
-                { code: 'ar', label: 'AR', flag: '🇸🇦' },
-                { code: 'it', label: 'IT', flag: '🇮🇹' },
+                { code: 'fr', label: 'Français', flag: '/images/flags/fr.svg' },
+                { code: 'en', label: 'English', flag: '/images/flags/gb.svg' },
+                { code: 'ar', label: 'العربية', flag: '/images/flags/sa.svg' },
+                { code: 'it', label: 'Italiano', flag: '/images/flags/it.svg' },
               ].map((lang, i) => (
                 <div
                   key={lang.code}
-                  className={`flex items-center gap-1.5 px-3 py-2 rounded-md border transition-colors ${
+                  className={`flex items-center gap-2 px-3 py-2 rounded-md border transition-colors ${
                     i === 0 ? 'border-brand-gold/50 bg-brand-gold/10' : 'border-brand-charcoal/30'
                   }`}
                 >
-                  <span className="text-base">{lang.flag}</span>
+                  <img src={lang.flag} alt={lang.label} className="w-5 h-4 rounded-sm object-cover" />
                   <span className="text-[11px] font-semibold text-brand-cream/70">{lang.label}</span>
                 </div>
               ))}

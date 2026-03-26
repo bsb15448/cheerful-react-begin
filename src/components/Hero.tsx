@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { CalendarDays, Users, Route } from 'lucide-react';
 
 const serviceOptions = [
   { value: 'airport', label: 'Aéroport' },
@@ -86,8 +87,9 @@ export default function Hero() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
               {/* Date */}
               <div>
-                <label className="text-[10px] tracking-[0.15em] uppercase text-brand-muted/60 mb-1.5 block font-semibold">
-                  📅 Date
+                <label className="flex items-center gap-1.5 text-[10px] tracking-[0.15em] uppercase text-brand-cream/50 mb-1.5 font-semibold">
+                  <CalendarDays className="w-3.5 h-3.5 text-brand-cream/40" />
+                  Date
                 </label>
                 <input
                   type="date"
@@ -99,8 +101,9 @@ export default function Hero() {
 
               {/* Passengers */}
               <div>
-                <label className="text-[10px] tracking-[0.15em] uppercase text-brand-muted/60 mb-1.5 block font-semibold">
-                  👥 Passagers
+                <label className="flex items-center gap-1.5 text-[10px] tracking-[0.15em] uppercase text-brand-cream/50 mb-1.5 font-semibold">
+                  <Users className="w-3.5 h-3.5 text-brand-cream/40" />
+                  Passagers
                 </label>
                 <select
                   value={passengers}
@@ -118,8 +121,9 @@ export default function Hero() {
 
               {/* Service type */}
               <div>
-                <label className="text-[10px] tracking-[0.15em] uppercase text-brand-muted/60 mb-1.5 block font-semibold">
-                  🚐 Trajet
+                <label className="flex items-center gap-1.5 text-[10px] tracking-[0.15em] uppercase text-brand-cream/50 mb-1.5 font-semibold">
+                  <Route className="w-3.5 h-3.5 text-brand-cream/40" />
+                  Trajet
                 </label>
                 <select
                   value={service}
