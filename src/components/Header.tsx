@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const languages = [
-  { code: 'fr', label: 'FR', flag: '/images/flags/fr.svg' },
-  { code: 'en', label: 'EN', flag: '/images/flags/gb.svg' },
-  { code: 'ar', label: 'AR', flag: '/images/flags/sa.svg' },
-  { code: 'it', label: 'IT', flag: '/images/flags/it.svg' },
+  { code: 'fr', label: 'FR', flag: '🇫🇷' },
+  { code: 'en', label: 'EN', flag: '🇬🇧' },
+  { code: 'ar', label: 'AR', flag: '🇸🇦' },
+  { code: 'it', label: 'IT', flag: '🇮🇹' },
 ];
 
 export default function Header() {
