@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Phone, Mail, MapPin, ChevronUp } from 'lucide-react';
 
 const languages = [
-  { code: 'fr', flag: '🇫🇷' },
-  { code: 'en', flag: '🇬🇧' },
-  { code: 'ar', flag: '🇸🇦' },
-  { code: 'it', flag: '🇮🇹' },
+  { code: 'fr', flag: '/images/flags/fr.svg' },
+  { code: 'en', flag: '/images/flags/gb.svg' },
+  { code: 'ar', flag: '/images/flags/sa.svg' },
+  { code: 'it', flag: '/images/flags/it.svg' },
 ];
 
 export default function Footer() {
