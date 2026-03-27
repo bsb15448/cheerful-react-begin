@@ -139,7 +139,7 @@ export default function Footer() {
                       }`}
                       aria-label={lang.code}
                     >
-                      <span className="text-lg leading-none">{lang.flag}</span>
+                      <img src={lang.flag} alt="" className="w-6 h-4 rounded-[2px] object-cover" />
                     </button>
                   ))}
                 </div>
