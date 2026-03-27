@@ -105,7 +105,7 @@ export default function Header() {
                           currentLang.code === lang.code ? 'bg-brand-gold/5' : ''
                         }`}
                       >
-                        <span className="text-lg leading-none">{lang.flag}</span>
+                        <img src={lang.flag} alt="" className="w-6 h-4 rounded-[2px] object-cover" />
                         {currentLang.code === lang.code && (
                           <svg className="w-3.5 h-3.5 text-brand-gold ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
