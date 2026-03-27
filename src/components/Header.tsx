@@ -73,7 +73,7 @@ export default function Header() {
                 onClick={() => setLangOpen(!langOpen)}
                 className="flex items-center gap-1.5 px-3 py-2 rounded-md border border-brand-charcoal/30 hover:border-brand-gold/40 transition-colors duration-300"
               >
-                <span className="text-lg leading-none">{currentLang.flag}</span>
+                <img src={currentLang.flag} alt="" className="w-6 h-4 rounded-[2px] object-cover" />
                 <svg
                   className={`w-3 h-3 text-brand-cream/40 transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`}
                   fill="none"
