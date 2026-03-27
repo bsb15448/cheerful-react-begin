@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Phone, Mail, MapPin, ChevronUp } from 'lucide-react';
 
 const languages = [
-  { code: 'fr', flag: '🇫🇷' },
-  { code: 'en', flag: '🇬🇧' },
-  { code: 'ar', flag: '🇸🇦' },
-  { code: 'it', flag: '🇮🇹' },
+  { code: 'fr', flag: '/images/flags/fr.svg' },
+  { code: 'en', flag: '/images/flags/gb.svg' },
+  { code: 'ar', flag: '/images/flags/sa.svg' },
+  { code: 'it', flag: '/images/flags/it.svg' },
 ];
 
 export default function Footer() {
@@ -139,7 +139,7 @@ export default function Footer() {
                       }`}
                       aria-label={lang.code}
                     >
-                      <span className="text-lg leading-none">{lang.flag}</span>
+                      <img src={lang.flag} alt="" className="w-6 h-4 rounded-[2px] object-cover" />
                     </button>
                   ))}
                 </div>

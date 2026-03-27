@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const languages = [
-  { code: 'fr', label: 'FR', flag: '🇫🇷' },
-  { code: 'en', label: 'EN', flag: '🇬🇧' },
-  { code: 'ar', label: 'AR', flag: '🇸🇦' },
-  { code: 'it', label: 'IT', flag: '🇮🇹' },
+  { code: 'fr', flag: '/images/flags/fr.svg' },
+  { code: 'en', flag: '/images/flags/gb.svg' },
+  { code: 'ar', flag: '/images/flags/sa.svg' },
+  { code: 'it', flag: '/images/flags/it.svg' },
 ];
 
 export default function Header() {
@@ -73,7 +73,7 @@ export default function Header() {
                 onClick={() => setLangOpen(!langOpen)}
                 className="flex items-center gap-1.5 px-3 py-2 rounded-md border border-brand-charcoal/30 hover:border-brand-gold/40 transition-colors duration-300"
               >
-                <span className="text-lg leading-none">{currentLang.flag}</span>
+                <img src={currentLang.flag} alt="" className="w-6 h-4 rounded-[2px] object-cover" />
                 <svg
                   className={`w-3 h-3 text-brand-cream/40 transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`}
                   fill="none"
@@ -105,7 +105,7 @@ export default function Header() {
                           currentLang.code === lang.code ? 'bg-brand-gold/5' : ''
                         }`}
                       >
-                        <span className="text-lg leading-none">{lang.flag}</span>
+                        <img src={lang.flag} alt="" className="w-6 h-4 rounded-[2px] object-cover" />
                         {currentLang.code === lang.code && (
                           <svg className="w-3.5 h-3.5 text-brand-gold ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -170,7 +170,7 @@ export default function Header() {
                           : 'border-brand-charcoal/30'
                       }`}
                     >
-                      <span className="text-lg">{lang.flag}</span>
+                      <img src={lang.flag} alt="" className="w-6 h-4 rounded-[2px] object-cover" />
                     </button>
                   ))}
                 </div>
