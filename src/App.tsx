@@ -1,3 +1,4 @@
+import { useI18n } from './lib/i18n';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,8 +11,10 @@ import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 
 function App() {
+  const { dir } = useI18n();
+
   return (
-    <div className="min-h-screen bg-brand-black">
+    <div className="min-h-screen bg-brand-black" dir={dir}>
       <Header />
       <Hero />
       <About />

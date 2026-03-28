@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, CalendarDays, Car, BookOpen, Search,
-  Settings, Menu, X, TrendingUp, Users, Clock, MapPin,
-  ChevronDown, Bell, LogOut
+  Settings, Menu, X, TrendingUp, LogOut
 } from 'lucide-react';
+import { useI18n, languages } from '../lib/i18n';
 import AdminDashboard from '../components/admin/AdminDashboard';
 import AdminReservations from '../components/admin/AdminReservations';
 import AdminVehicles from '../components/admin/AdminVehicles';
@@ -13,19 +13,20 @@ import AdminAnalytics from '../components/admin/AdminAnalytics';
 import AdminSEO from '../components/admin/AdminSEO';
 import AdminSettings from '../components/admin/AdminSettings';
 
-const navItems = [
-  { id: 'dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
-  { id: 'reservations', label: 'Réservations', icon: BookOpen },
-  { id: 'vehicles', label: 'Véhicules', icon: Car },
-  { id: 'calendar', label: 'Calendrier', icon: CalendarDays },
-  { id: 'analytics', label: 'Analytiques', icon: TrendingUp },
-  { id: 'seo', label: 'SEO', icon: Search },
-  { id: 'settings', label: 'Paramètres', icon: Settings },
-];
-
 export default function Admin() {
+  const { t, locale, setLocale, dir } = useI18n();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const navItems = [
+    { id: 'dashboard', label: t('admin.dashboard'), icon: LayoutDashboard },
+    { id: 'reservations', label: t('admin.reservations'), icon: BookOpen },
+    { id: 'vehicles', label: t('admin.vehicles'), icon: Car },
+    { id: 'calendar', label: t('admin.calendar'), icon: CalendarDays },
+    { id: 'analytics', label: t('admin.analytics'), icon: TrendingUp },
+    { id: 'seo', label: t('admin.seo'), icon: Search },
+    { id: 'settings', label: t('admin.settings'), icon: Settings },
+  ];
 
   const renderContent = () => {
     switch (activeTab) {
@@ -41,7 +42,7 @@ export default function Admin() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex">
+    <div className="min-h-screen bg-[#0a0a0f] flex" dir={dir}>
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex flex-col w-[260px] bg-[#0f0f18] border-r border-white/5 fixed inset-y-0 left-0 z-40">
         <div className="p-6 border-b border-white/5">
@@ -65,7 +66,21 @@ export default function Admin() {
             </button>
           ))}
         </nav>
-        <div className="p-4 border-t border-white/5">
+        <div className="p-4 border-t border-white/5 space-y-3">
+          {/* Language switcher */}
+          <div className="flex items-center gap-1.5 px-3">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => setLocale(lang.code)}
+                className={`w-7 h-7 rounded flex items-center justify-center transition-all ${
+                  locale === lang.code ? 'bg-brand-gold/15 ring-1 ring-brand-gold/30' : 'hover:bg-white/5'
+                }`}
+              >
+                <img src={lang.flag} alt="" className="w-5 h-3.5 rounded-[1px] object-cover" />
+              </button>
+            ))}
+          </div>
           <div className="flex items-center gap-3 px-3 py-2">
             <div className="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center">
               <span className="text-xs font-bold text-brand-gold">LS</span>
@@ -125,6 +140,21 @@ export default function Admin() {
                   </button>
                 ))}
               </nav>
+              <div className="px-6 py-3 border-t border-white/5">
+                <div className="flex items-center gap-1.5">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => setLocale(lang.code)}
+                      className={`w-8 h-8 rounded flex items-center justify-center transition-all ${
+                        locale === lang.code ? 'bg-brand-gold/15 ring-1 ring-brand-gold/30' : 'hover:bg-white/5'
+                      }`}
+                    >
+                      <img src={lang.flag} alt="" className="w-5 h-3.5 rounded-[1px] object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </div>
             </motion.aside>
           </>
         )}

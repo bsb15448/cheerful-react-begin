@@ -1,29 +1,16 @@
 import { motion } from 'framer-motion';
-
-const services = [
-  {
-    title: 'Transferts aéroport',
-    desc: 'Marseille, Nice, Toulon — on vous dépose ou on vient vous chercher, à l\'heure.',
-    image: '/images/airport-transfer.jpg',
-  },
-  {
-    title: 'Déplacements pro',
-    desc: 'Réunions, séminaires, rendez-vous clients. Arrivez détendu et à l\'heure.',
-    image: '/images/chauffeur.jpg',
-  },
-  {
-    title: 'Soirées & événements',
-    desc: 'Mariage, gala, anniversaire — profitez de votre soirée, on gère le transport.',
-    image: '/images/experience-interior.jpg',
-  },
-  {
-    title: 'Balades & excursions',
-    desc: 'Découvrez la Côte d\'Azur et la Provence à votre rythme, sans vous soucier de la route.',
-    image: '/images/van-exterior.jpg',
-  },
-];
+import { useI18n } from '../lib/i18n';
 
 export default function Services() {
+  const { t } = useI18n();
+
+  const services = [
+    { title: t('services.airport.title'), desc: t('services.airport.desc'), image: '/images/airport-transfer.jpg' },
+    { title: t('services.business.title'), desc: t('services.business.desc'), image: '/images/chauffeur.jpg' },
+    { title: t('services.event.title'), desc: t('services.event.desc'), image: '/images/experience-interior.jpg' },
+    { title: t('services.excursion.title'), desc: t('services.excursion.desc'), image: '/images/van-exterior.jpg' },
+  ];
+
   return (
     <section id="services" className="py-28 lg:py-40 bg-brand-dark">
       <div className="section-padding max-w-[1400px] mx-auto">
@@ -38,17 +25,17 @@ export default function Services() {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-[2px] bg-brand-gold rounded-full" />
               <span className="text-[12px] tracking-[0.25em] uppercase text-brand-gold font-semibold">
-                Nos services
+                {t('services.tag')}
               </span>
             </div>
             <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-light leading-[1.1]">
-              Un van, mille
+              {t('services.title1')}
               <br />
-              <em className="text-gradient-gold italic font-semibold">occasions</em>
+              <em className="text-gradient-gold italic font-semibold">{t('services.title2')}</em>
             </h2>
           </div>
           <p className="text-[15px] text-brand-cream/50 leading-[1.8] max-w-md lg:text-right">
-            Quel que soit votre besoin, on a le trajet qu'il vous faut.
+            {t('services.subtitle')}
           </p>
         </motion.div>
 
@@ -72,14 +59,10 @@ export default function Services() {
               <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/40 to-brand-black/10 group-hover:from-brand-black/95 transition-all duration-500" />
               
               <div className="absolute bottom-0 left-0 right-0 p-7 lg:p-9">
-                <h3 className="font-display text-xl lg:text-2xl font-medium mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-[13px] text-brand-cream/55 leading-[1.7] max-w-sm">
-                  {s.desc}
-                </p>
+                <h3 className="font-display text-xl lg:text-2xl font-medium mb-2">{s.title}</h3>
+                <p className="text-[13px] text-brand-cream/55 leading-[1.7] max-w-sm">{s.desc}</p>
                 <span className="inline-block mt-3 text-[12px] text-brand-gold font-semibold tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  Demander un devis →
+                  {t('services.requestQuote')}
                 </span>
               </div>
             </motion.a>

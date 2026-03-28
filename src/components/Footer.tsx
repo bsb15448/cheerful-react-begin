@@ -1,15 +1,8 @@
-import { useState } from 'react';
 import { Phone, Mail, MapPin, ChevronUp } from 'lucide-react';
-
-const languages = [
-  { code: 'fr', flag: '/images/flags/fr.svg' },
-  { code: 'en', flag: '/images/flags/gb.svg' },
-  { code: 'ar', flag: '/images/flags/sa.svg' },
-  { code: 'it', flag: '/images/flags/it.svg' },
-];
+import { useI18n, languages } from '../lib/i18n';
 
 export default function Footer() {
-  const [currentLang, setCurrentLang] = useState(languages[0]);
+  const { t, locale, setLocale } = useI18n();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -17,17 +10,14 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="relative border-t border-brand-charcoal/15">
-      {/* Main footer */}
       <div className="py-20 lg:py-28 section-padding">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
 
-            {/* Brand column */}
             <div className="md:col-span-4 lg:col-span-5">
               <img src="/images/logo.png" alt="L.S Transport" className="h-10 mb-6" />
               <p className="text-[14px] text-brand-cream/40 leading-[1.9] max-w-sm mb-8">
-                Service de transport privé d'exception dans la région PACA.
-                Confort, ponctualité et discrétion pour chacun de vos déplacements.
+                {t('footer.desc')}
               </p>
               <div className="flex items-center gap-4">
                 <a
@@ -55,18 +45,17 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Navigation */}
             <div className="md:col-span-2 lg:col-span-2">
               <h4 className="text-[11px] tracking-[0.2em] uppercase text-brand-cream/60 font-semibold mb-6">
-                Navigation
+                {t('footer.nav')}
               </h4>
               <nav className="flex flex-col gap-3">
                 {[
-                  { href: '#about', label: 'À propos' },
-                  { href: '#experience', label: 'Expérience' },
-                  { href: '#services', label: 'Services' },
-                  { href: '#testimonials', label: 'Témoignages' },
-                  { href: '#booking', label: 'Réservation' },
+                  { href: '#about', label: t('nav.about') },
+                  { href: '#experience', label: t('nav.experience') },
+                  { href: '#services', label: t('nav.services') },
+                  { href: '#testimonials', label: t('footer.testimonials') },
+                  { href: '#booking', label: t('footer.reservation') },
                 ].map((link) => (
                   <a
                     key={link.href}
@@ -79,10 +68,9 @@ export default function Footer() {
               </nav>
             </div>
 
-            {/* Contact */}
             <div className="md:col-span-3 lg:col-span-2">
               <h4 className="text-[11px] tracking-[0.2em] uppercase text-brand-cream/60 font-semibold mb-6">
-                Contact
+                {t('footer.contact')}
               </h4>
               <div className="space-y-4">
                 <a href="tel:+33600000000" className="flex items-center gap-3 text-[13px] text-brand-cream/35 hover:text-brand-gold transition-colors duration-300">
@@ -100,17 +88,16 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Legal & Language */}
             <div className="md:col-span-3 lg:col-span-3">
               <h4 className="text-[11px] tracking-[0.2em] uppercase text-brand-cream/60 font-semibold mb-6">
-                Informations
+                {t('footer.info')}
               </h4>
               <nav className="flex flex-col gap-3 mb-8">
                 {[
-                  { href: '#', label: 'Mentions légales' },
-                  { href: '#', label: 'Politique de confidentialité' },
-                  { href: '#', label: 'Conditions générales' },
-                  { href: '#', label: 'Politique de cookies' },
+                  { href: '#', label: t('footer.legal') },
+                  { href: '#', label: t('footer.privacy') },
+                  { href: '#', label: t('footer.terms') },
+                  { href: '#', label: t('footer.cookies') },
                 ].map((link) => (
                   <a
                     key={link.label}
@@ -122,18 +109,17 @@ export default function Footer() {
                 ))}
               </nav>
 
-              {/* Language switcher */}
               <div>
                 <span className="text-[11px] tracking-[0.15em] uppercase text-brand-cream/30 font-medium block mb-3">
-                  Langue
+                  {t('footer.language')}
                 </span>
                 <div className="flex items-center gap-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => setCurrentLang(lang)}
+                      onClick={() => setLocale(lang.code)}
                       className={`w-9 h-9 rounded-md border flex items-center justify-center transition-all duration-200 ${
-                        currentLang.code === lang.code
+                        locale === lang.code
                           ? 'border-brand-gold/50 bg-brand-gold/10'
                           : 'border-brand-charcoal/30 hover:border-brand-charcoal/50'
                       }`}
@@ -149,12 +135,11 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-brand-charcoal/10">
         <div className="section-padding py-6 max-w-[1400px] mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-[11px] text-brand-muted/35">
-              © {new Date().getFullYear()} L.S Transport — Van Prestige. Tous droits réservés.
+              © {new Date().getFullYear()} L.S Transport — Van Prestige. {t('footer.rights')}
             </p>
             <div className="flex items-center gap-6">
               <span className="text-[11px] text-brand-muted/35">
@@ -163,7 +148,7 @@ export default function Footer() {
               <button
                 onClick={scrollToTop}
                 className="w-8 h-8 rounded-full border border-brand-charcoal/25 flex items-center justify-center hover:border-brand-gold/40 hover:bg-brand-gold/5 transition-all duration-300"
-                aria-label="Retour en haut"
+                aria-label={t('footer.backToTop')}
               >
                 <ChevronUp className="w-4 h-4 text-brand-cream/40" />
               </button>
@@ -172,7 +157,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom padding for mobile sticky CTA */}
       <div className="lg:hidden h-16" />
     </footer>
   );
