@@ -1,24 +1,15 @@
 import { motion } from 'framer-motion';
-
-const testimonials = [
-  {
-    text: 'Super service ! Le chauffeur était à l\'heure, le van très confortable. Parfait pour notre transfert vers l\'aéroport de Nice.',
-    author: 'Sophie M.',
-    role: 'Particulier, Marseille',
-  },
-  {
-    text: 'On utilise L.S Transport pour nos clients. Toujours pro, toujours ponctuel. Les retours sont unanimes : un service au top.',
-    author: 'Marc D.',
-    role: 'Hôtelier, Cannes',
-  },
-  {
-    text: 'J\'avais besoin d\'un transport pour un mariage. Tout était parfait, du premier contact à la fin de la soirée. Je recommande à 100%.',
-    author: 'Isabelle R.',
-    role: 'Particulier, Aix-en-Provence',
-  },
-];
+import { useI18n } from '../lib/i18n';
 
 export default function Testimonials() {
+  const { t } = useI18n();
+
+  const testimonials = [
+    { text: t('testimonials.t1'), author: t('testimonials.t1.author'), role: t('testimonials.t1.role') },
+    { text: t('testimonials.t2'), author: t('testimonials.t2.author'), role: t('testimonials.t2.role') },
+    { text: t('testimonials.t3'), author: t('testimonials.t3.author'), role: t('testimonials.t3.role') },
+  ];
+
   return (
     <section className="py-28 lg:py-40 bg-brand-dark section-padding">
       <div className="max-w-[1400px] mx-auto">
@@ -33,24 +24,24 @@ export default function Testimonials() {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-[2px] bg-brand-gold rounded-full" />
               <span className="text-[12px] tracking-[0.25em] uppercase text-brand-gold font-semibold">
-                Avis clients
+                {t('testimonials.tag')}
               </span>
             </div>
             <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-light leading-[1.1]">
-              Ce qu'ils disent
+              {t('testimonials.title1')}
               <br />
-              <em className="text-gradient-gold italic font-semibold">de nous</em>
+              <em className="text-gradient-gold italic font-semibold">{t('testimonials.title2')}</em>
             </h2>
           </div>
           <a href="#booking" className="btn-primary text-[13px] !py-3 !px-7 self-start lg:self-auto">
-            <span>Réserver aussi</span>
+            <span>{t('testimonials.cta')}</span>
           </a>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-5 lg:gap-6">
-          {testimonials.map((t, i) => (
+          {testimonials.map((item, i) => (
             <motion.div
-              key={t.author}
+              key={item.author}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -64,13 +55,13 @@ export default function Testimonials() {
                   ))}
                 </div>
                 <p className="text-[14px] text-brand-cream/65 leading-[1.8]">
-                  « {t.text} »
+                  « {item.text} »
                 </p>
               </div>
 
               <div className="mt-7 pt-5 border-t border-brand-charcoal/20">
-                <div className="font-display text-base font-medium">{t.author}</div>
-                <div className="text-[11px] text-brand-muted/60 tracking-wider mt-1">{t.role}</div>
+                <div className="font-display text-base font-medium">{item.author}</div>
+                <div className="text-[11px] text-brand-muted/60 tracking-wider mt-1">{item.role}</div>
               </div>
             </motion.div>
           ))}

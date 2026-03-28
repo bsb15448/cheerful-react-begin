@@ -1,15 +1,13 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../lib/i18n';
 
 export default function FinalCTA() {
+  const { t } = useI18n();
+
   return (
     <section className="relative py-32 lg:py-44 overflow-hidden">
       <div className="absolute inset-0">
-        <img
-          src="/images/hero-bg.jpg"
-          alt="Van L.S Transport"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+        <img src="/images/hero-bg.jpg" alt="Van L.S Transport" className="w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-brand-black/85" />
       </div>
 
@@ -21,17 +19,17 @@ export default function FinalCTA() {
         className="relative z-10 text-center section-padding max-w-[700px] mx-auto"
       >
         <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-light leading-[1.1] mb-5 tracking-[-0.01em]">
-          Prêt à réserver
+          {t('cta.title1')}
           <br />
-          <em className="text-gradient-gold italic font-semibold">votre prochain trajet ?</em>
+          <em className="text-gradient-gold italic font-semibold">{t('cta.title2')}</em>
         </h2>
         <p className="text-[15px] text-brand-cream/50 max-w-md mx-auto mb-10 leading-[1.8]">
-          Devis gratuit en quelques minutes. On s'occupe du reste.
+          {t('cta.subtitle')}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a href="#booking" className="btn-primary">
-            <span>Demander un devis</span>
+            <span>{t('cta.button')}</span>
           </a>
           <a
             href="https://wa.me/33600000000?text=Bonjour%2C%20je%20souhaite%20réserver%20un%20transport."
