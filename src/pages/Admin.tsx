@@ -36,6 +36,7 @@ export default function Admin() {
       case 'reservations': return <AdminReservations />;
       case 'vehicles': return <AdminVehicles />;
       case 'calendar': return <AdminCalendar />;
+      case 'pricing': return <AdminPricing />;
       case 'analytics': return <AdminAnalytics />;
       case 'seo': return <AdminSEO />;
       case 'settings': return <AdminSettings />;
