@@ -3,6 +3,7 @@ import { Save, Lock, Palette } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
 
 export default function AdminSettings() {
+  const { t } = useI18n();
   const [activeSection, setActiveSection] = useState('general');
 
   const sections = [
