@@ -12,6 +12,7 @@ import AdminCalendar from '../components/admin/AdminCalendar';
 import AdminAnalytics from '../components/admin/AdminAnalytics';
 import AdminSEO from '../components/admin/AdminSEO';
 import AdminSettings from '../components/admin/AdminSettings';
+import AdminPricing from '../components/admin/AdminPricing';
 
 export default function Admin() {
   const { t, locale, setLocale, dir } = useI18n();
