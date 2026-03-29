@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Save, Globe, Bell, Lock, Palette, Mail } from 'lucide-react';
+import { Save, Lock, Palette, Globe, Bell } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export default function AdminSettings() {
+  const { t } = useI18n();
   const [activeSection, setActiveSection] = useState('general');
 
   const sections = [
@@ -14,8 +16,8 @@ export default function AdminSettings() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl md:text-2xl font-semibold text-white">Paramètres</h1>
-        <p className="text-sm text-white/40 mt-1">Configuration de votre espace admin</p>
+        <h1 className="text-xl md:text-2xl font-semibold text-white">{t('admin.settings')}</h1>
+        <p className="text-sm text-white/40 mt-1">{t('admin.settingsTitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">

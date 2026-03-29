@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Clock, MapPin, User } from 'lucide-react';
-
-const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+import { ChevronLeft, ChevronRight, Clock, User } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 interface CalEvent {
   date: number;
@@ -31,9 +29,22 @@ const mockEvents: CalEvent[] = [
 ];
 
 export default function AdminCalendar() {
-  const [currentMonth, setCurrentMonth] = useState(2); // March
-  const [currentYear, setCurrentYear] = useState(2024);
+  const { t } = useI18n();
+  const [currentMonth, setCurrentMonth] = useState(2);
+  const [currentYear, setCurrentYear] = useState(2026);
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
+
+  const monthNames = [
+    t('admin.month.jan'), t('admin.month.feb'), t('admin.month.mar'),
+    t('admin.month.apr'), t('admin.month.may'), t('admin.month.jun'),
+    t('admin.month.jul'), t('admin.month.aug'), t('admin.month.sep'),
+    t('admin.month.oct'), t('admin.month.nov'), t('admin.month.dec'),
+  ];
+
+  const dayNames = [
+    t('admin.day.mon'), t('admin.day.tue'), t('admin.day.wed'),
+    t('admin.day.thu'), t('admin.day.fri'), t('admin.day.sat'), t('admin.day.sun'),
+  ];
 
   const getDaysInMonth = (month: number, year: number) => new Date(year, month + 1, 0).getDate();
   const getFirstDayOfMonth = (month: number, year: number) => {
@@ -61,22 +72,28 @@ export default function AdminCalendar() {
   const eventsForDate = (d: number) => mockEvents.filter((e) => e.date === d);
   const selectedEvents = selectedDate ? eventsForDate(selectedDate) : [];
 
+  const legendItems = [
+    { label: t('service.airport'), color: 'bg-blue-400' },
+    { label: t('service.event'), color: 'bg-purple-400' },
+    { label: t('service.excursion'), color: 'bg-emerald-400' },
+    { label: t('service.business'), color: 'bg-brand-gold' },
+  ];
+
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl md:text-2xl font-semibold text-white">Calendrier</h1>
-        <p className="text-sm text-white/40 mt-1">Planning des réservations</p>
+        <h1 className="text-xl md:text-2xl font-semibold text-white">{t('admin.calendar')}</h1>
+        <p className="text-sm text-white/40 mt-1">{t('admin.calendarTitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Calendar Grid */}
         <div className="lg:col-span-2 bg-[#14141f] border border-white/5 rounded-xl p-4 md:p-6">
           <div className="flex items-center justify-between mb-6">
             <button onClick={() => navigate(-1)} className="p-2 rounded-lg hover:bg-white/5 text-white/40 hover:text-white/70 transition-colors">
               <ChevronLeft className="w-4 h-4" />
             </button>
             <h2 className="text-[15px] font-semibold text-white/80">
-              {months[currentMonth]} {currentYear}
+              {monthNames[currentMonth]} {currentYear}
             </h2>
             <button onClick={() => navigate(1)} className="p-2 rounded-lg hover:bg-white/5 text-white/40 hover:text-white/70 transition-colors">
               <ChevronRight className="w-4 h-4" />
@@ -84,7 +101,7 @@ export default function AdminCalendar() {
           </div>
 
           <div className="grid grid-cols-7 gap-1">
-            {days.map((d) => (
+            {dayNames.map((d) => (
               <div key={d} className="text-center py-2 text-[10px] font-medium text-white/25 uppercase tracking-wider">
                 {d}
               </div>
@@ -92,7 +109,7 @@ export default function AdminCalendar() {
             {calendarDays.map((day, i) => {
               const events = day ? eventsForDate(day) : [];
               const isSelected = day === selectedDate;
-              const isToday = day === 27 && currentMonth === 2;
+              const isToday = day === 29 && currentMonth === 2;
               return (
                 <button
                   key={i}
@@ -129,14 +146,8 @@ export default function AdminCalendar() {
             })}
           </div>
 
-          {/* Legend */}
           <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t border-white/5">
-            {[
-              { label: 'Aéroport', color: 'bg-blue-400' },
-              { label: 'Événement', color: 'bg-purple-400' },
-              { label: 'Excursion', color: 'bg-emerald-400' },
-              { label: 'Pro', color: 'bg-brand-gold' },
-            ].map((l) => (
+            {legendItems.map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className={`w-2 h-2 rounded-full ${l.color}`} />
                 <span className="text-[10px] text-white/30">{l.label}</span>
@@ -145,14 +156,13 @@ export default function AdminCalendar() {
           </div>
         </div>
 
-        {/* Sidebar - Events */}
         <div className="bg-[#14141f] border border-white/5 rounded-xl p-4 md:p-6">
           <h3 className="text-sm font-medium text-white/70 mb-4">
-            {selectedDate ? `${selectedDate} ${months[currentMonth]}` : 'Sélectionnez une date'}
+            {selectedDate ? `${selectedDate} ${monthNames[currentMonth]}` : t('admin.selectDate')}
           </h3>
 
           {selectedDate && selectedEvents.length === 0 && (
-            <p className="text-[12px] text-white/25 text-center py-8">Aucune réservation</p>
+            <p className="text-[12px] text-white/25 text-center py-8">{t('admin.noReservation')}</p>
           )}
 
           <div className="space-y-3">
@@ -173,10 +183,9 @@ export default function AdminCalendar() {
             ))}
           </div>
 
-          {/* Upcoming */}
           {!selectedDate && (
             <div className="space-y-3">
-              <p className="text-[11px] text-white/25 uppercase tracking-wider mb-3">Prochaines réservations</p>
+              <p className="text-[11px] text-white/25 uppercase tracking-wider mb-3">{t('admin.upcoming')}</p>
               {mockEvents.slice(0, 5).map((e, i) => (
                 <div key={i} className="flex items-center gap-3 p-2.5 rounded-lg bg-white/[0.02]">
                   <div className={`w-1 h-8 rounded-full ${
@@ -186,7 +195,7 @@ export default function AdminCalendar() {
                   }`} />
                   <div className="flex-1 min-w-0">
                     <p className="text-[12px] text-white/60 truncate">{e.title}</p>
-                    <p className="text-[10px] text-white/25">{e.date} {months[currentMonth]} · {e.time}</p>
+                    <p className="text-[10px] text-white/25">{e.date} {monthNames[currentMonth]} · {e.time}</p>
                   </div>
                 </div>
               ))}

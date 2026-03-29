@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, CalendarDays, Car, BookOpen, Search,
-  Settings, Menu, X, TrendingUp, LogOut
+  Settings, Menu, X, TrendingUp, LogOut, DollarSign
 } from 'lucide-react';
 import { useI18n, languages } from '../lib/i18n';
 import AdminDashboard from '../components/admin/AdminDashboard';
@@ -12,6 +12,7 @@ import AdminCalendar from '../components/admin/AdminCalendar';
 import AdminAnalytics from '../components/admin/AdminAnalytics';
 import AdminSEO from '../components/admin/AdminSEO';
 import AdminSettings from '../components/admin/AdminSettings';
+import AdminPricing from '../components/admin/AdminPricing';
 
 export default function Admin() {
   const { t, locale, setLocale, dir } = useI18n();
@@ -23,6 +24,7 @@ export default function Admin() {
     { id: 'reservations', label: t('admin.reservations'), icon: BookOpen },
     { id: 'vehicles', label: t('admin.vehicles'), icon: Car },
     { id: 'calendar', label: t('admin.calendar'), icon: CalendarDays },
+    { id: 'pricing', label: t('admin.pricing'), icon: DollarSign },
     { id: 'analytics', label: t('admin.analytics'), icon: TrendingUp },
     { id: 'seo', label: t('admin.seo'), icon: Search },
     { id: 'settings', label: t('admin.settings'), icon: Settings },
@@ -34,6 +36,7 @@ export default function Admin() {
       case 'reservations': return <AdminReservations />;
       case 'vehicles': return <AdminVehicles />;
       case 'calendar': return <AdminCalendar />;
+      case 'pricing': return <AdminPricing />;
       case 'analytics': return <AdminAnalytics />;
       case 'seo': return <AdminSEO />;
       case 'settings': return <AdminSettings />;
