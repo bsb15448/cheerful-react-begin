@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Save, Lock, Palette } from 'lucide-react';
+import { Save, Lock, Palette, Globe, Bell } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
 
 export default function AdminSettings() {
