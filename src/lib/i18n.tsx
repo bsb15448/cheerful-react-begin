@@ -771,6 +771,12 @@ const translations: Record<Locale, Record<string, string>> = {
     'admin.pricing.maxKm': 'أقصى كم',
     'admin.pricing.saved': 'تم الحفظ!',
     'admin.pricing.backendNote': 'سيتم مزامنة هذه الأسعار مع الخادم. عدّل القيم واحفظ للتطبيق.',
+    'admin.month.jan': 'يناير', 'admin.month.feb': 'فبراير', 'admin.month.mar': 'مارس',
+    'admin.month.apr': 'أبريل', 'admin.month.may': 'مايو', 'admin.month.jun': 'يونيو',
+    'admin.month.jul': 'يوليو', 'admin.month.aug': 'أغسطس', 'admin.month.sep': 'سبتمبر',
+    'admin.month.oct': 'أكتوبر', 'admin.month.nov': 'نوفمبر', 'admin.month.dec': 'ديسمبر',
+    'admin.day.mon': 'إثن', 'admin.day.tue': 'ثلا', 'admin.day.wed': 'أرب',
+    'admin.day.thu': 'خمي', 'admin.day.fri': 'جمع', 'admin.day.sat': 'سبت', 'admin.day.sun': 'أحد',
   },
 
   it: {
