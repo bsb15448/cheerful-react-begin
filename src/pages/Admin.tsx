@@ -24,6 +24,7 @@ export default function Admin() {
     { id: 'reservations', label: t('admin.reservations'), icon: BookOpen },
     { id: 'vehicles', label: t('admin.vehicles'), icon: Car },
     { id: 'calendar', label: t('admin.calendar'), icon: CalendarDays },
+    { id: 'pricing', label: t('admin.pricing'), icon: DollarSign },
     { id: 'analytics', label: t('admin.analytics'), icon: TrendingUp },
     { id: 'seo', label: t('admin.seo'), icon: Search },
     { id: 'settings', label: t('admin.settings'), icon: Settings },
