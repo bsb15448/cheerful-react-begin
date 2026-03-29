@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, CalendarDays, Car, BookOpen, Search,
-  Settings, Menu, X, TrendingUp, LogOut
+  Settings, Menu, X, TrendingUp, LogOut, DollarSign
 } from 'lucide-react';
 import { useI18n, languages } from '../lib/i18n';
 import AdminDashboard from '../components/admin/AdminDashboard';
