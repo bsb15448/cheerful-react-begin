@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Save, Globe, Bell, Lock, Palette, Mail } from 'lucide-react';
+import { Save, Lock, Palette } from 'lucide-react';
+import { useI18n } from '../../lib/i18n';
 
 export default function AdminSettings() {
   const [activeSection, setActiveSection] = useState('general');
