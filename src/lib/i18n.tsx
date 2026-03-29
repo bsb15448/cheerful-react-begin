@@ -277,6 +277,12 @@ const translations: Record<Locale, Record<string, string>> = {
     'admin.pricing.maxKm': 'Km max',
     'admin.pricing.saved': 'Enregistré !',
     'admin.pricing.backendNote': 'Ces tarifs seront synchronisés avec le backend. Modifiez les valeurs et sauvegardez pour appliquer.',
+    'admin.month.jan': 'Janvier', 'admin.month.feb': 'Février', 'admin.month.mar': 'Mars',
+    'admin.month.apr': 'Avril', 'admin.month.may': 'Mai', 'admin.month.jun': 'Juin',
+    'admin.month.jul': 'Juillet', 'admin.month.aug': 'Août', 'admin.month.sep': 'Septembre',
+    'admin.month.oct': 'Octobre', 'admin.month.nov': 'Novembre', 'admin.month.dec': 'Décembre',
+    'admin.day.mon': 'Lun', 'admin.day.tue': 'Mar', 'admin.day.wed': 'Mer',
+    'admin.day.thu': 'Jeu', 'admin.day.fri': 'Ven', 'admin.day.sat': 'Sam', 'admin.day.sun': 'Dim',
   },
 
   en: {
