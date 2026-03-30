@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, CalendarDays, Car, BookOpen, Search,
-  Settings, Menu, X, TrendingUp, LogOut, DollarSign
+  Settings, Menu, X, TrendingUp, LogOut, DollarSign,
+  Users, UserCheck, FileText
 } from 'lucide-react';
 import { useI18n, languages } from '../lib/i18n';
+import { useAuth } from '../lib/auth';
+import AdminLogin from './AdminLogin';
 import AdminDashboard from '../components/admin/AdminDashboard';
 import AdminReservations from '../components/admin/AdminReservations';
 import AdminVehicles from '../components/admin/AdminVehicles';
@@ -13,18 +16,29 @@ import AdminAnalytics from '../components/admin/AdminAnalytics';
 import AdminSEO from '../components/admin/AdminSEO';
 import AdminSettings from '../components/admin/AdminSettings';
 import AdminPricing from '../components/admin/AdminPricing';
+import AdminCRM from '../components/admin/AdminCRM';
+import AdminDrivers from '../components/admin/AdminDrivers';
+import AdminInvoices from '../components/admin/AdminInvoices';
 
 export default function Admin() {
   const { t, locale, setLocale, dir } = useI18n();
+  const { isAuthenticated, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  if (!isAuthenticated) {
+    return <AdminLogin />;
+  }
 
   const navItems = [
     { id: 'dashboard', label: t('admin.dashboard'), icon: LayoutDashboard },
     { id: 'reservations', label: t('admin.reservations'), icon: BookOpen },
+    { id: 'crm', label: t('admin.crm'), icon: Users },
+    { id: 'drivers', label: t('admin.drivers'), icon: UserCheck },
     { id: 'vehicles', label: t('admin.vehicles'), icon: Car },
     { id: 'calendar', label: t('admin.calendar'), icon: CalendarDays },
     { id: 'pricing', label: t('admin.pricing'), icon: DollarSign },
+    { id: 'invoices', label: t('admin.invoices'), icon: FileText },
     { id: 'analytics', label: t('admin.analytics'), icon: TrendingUp },
     { id: 'seo', label: t('admin.seo'), icon: Search },
     { id: 'settings', label: t('admin.settings'), icon: Settings },
@@ -34,9 +48,12 @@ export default function Admin() {
     switch (activeTab) {
       case 'dashboard': return <AdminDashboard />;
       case 'reservations': return <AdminReservations />;
+      case 'crm': return <AdminCRM />;
+      case 'drivers': return <AdminDrivers />;
       case 'vehicles': return <AdminVehicles />;
       case 'calendar': return <AdminCalendar />;
       case 'pricing': return <AdminPricing />;
+      case 'invoices': return <AdminInvoices />;
       case 'analytics': return <AdminAnalytics />;
       case 'seo': return <AdminSEO />;
       case 'settings': return <AdminSettings />;
@@ -70,7 +87,6 @@ export default function Admin() {
           ))}
         </nav>
         <div className="p-4 border-t border-white/5 space-y-3">
-          {/* Language switcher */}
           <div className="flex items-center gap-1.5 px-3">
             {languages.map((lang) => (
               <button
@@ -92,7 +108,7 @@ export default function Admin() {
               <p className="text-xs font-medium text-white/70 truncate">Admin</p>
               <p className="text-[10px] text-white/30">admin@lstransport.fr</p>
             </div>
-            <button className="text-white/30 hover:text-white/60 transition-colors">
+            <button onClick={logout} className="text-white/30 hover:text-white/60 transition-colors">
               <LogOut className="w-4 h-4" />
             </button>
           </div>
@@ -104,9 +120,14 @@ export default function Admin() {
         <a href="/" className="flex items-center gap-2">
           <img src="/images/logo.png" alt="L.S Transport" className="h-7 w-auto" />
         </a>
-        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="text-white/60">
-          {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <button onClick={logout} className="text-white/40 hover:text-white/60">
+            <LogOut className="w-4 h-4" />
+          </button>
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="text-white/60">
+            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Sidebar Overlay */}
@@ -127,7 +148,7 @@ export default function Admin() {
               transition={{ type: 'spring', damping: 25 }}
               className="lg:hidden fixed inset-y-0 left-0 w-[260px] bg-[#0f0f18] border-r border-white/5 z-50 pt-16"
             >
-              <nav className="py-4 px-3 space-y-1">
+              <nav className="py-4 px-3 space-y-1 overflow-y-auto max-h-[calc(100vh-8rem)]">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
