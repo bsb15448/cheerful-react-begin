@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FileText, Download, Send, Plus, Search, Eye, X, Check } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
+import { generateInvoicePdf } from '../../lib/invoicePdf';
 
 interface Invoice {
   id: string;
