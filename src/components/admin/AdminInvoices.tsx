@@ -208,7 +208,33 @@ export default function AdminInvoices() {
               </div>
 
               <div className="flex gap-2">
-                <button className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-brand-gold/10 text-brand-gold text-xs font-medium hover:bg-brand-gold/20 transition">
+                <button
+                  onClick={() => {
+                    generateInvoicePdf(selectedInvoice, {
+                      title: t('admin.invoices.pdf.title'),
+                      company: t('admin.invoices.pdf.company'),
+                      billTo: t('admin.invoices.pdf.billTo'),
+                      invoiceNumber: t('admin.invoices.pdf.invoiceNumber'),
+                      issueDate: t('admin.invoices.issueDate'),
+                      dueDate: t('admin.invoices.dueDate'),
+                      status: t('admin.invoices.pdf.status'),
+                      paymentDate: t('admin.invoices.pdf.paymentDate'),
+                      description: t('admin.invoices.description'),
+                      qty: t('admin.invoices.qty'),
+                      unitPrice: t('admin.invoices.unitPrice'),
+                      subtotal: t('admin.invoices.subtotal'),
+                      tax: t('admin.invoices.tax'),
+                      totalTTC: t('admin.invoices.pdf.totalTTC'),
+                      thankYou: t('admin.invoices.pdf.thankYou'),
+                      footer: t('admin.invoices.pdf.footer'),
+                      page: t('admin.invoices.pdf.page'),
+                      statusLabel: statusConfig[selectedInvoice.status].label,
+                      client: t('admin.invoices.client'),
+                      reservation: t('admin.invoices.reservation'),
+                    });
+                  }}
+                  className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-brand-gold/10 text-brand-gold text-xs font-medium hover:bg-brand-gold/20 transition"
+                >
                   <Download className="w-3.5 h-3.5" />
                   {t('admin.invoices.downloadPdf')}
                 </button>
